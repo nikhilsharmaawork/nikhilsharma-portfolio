@@ -1,22 +1,1099 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nikhil Sharma | Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <meta name="description" content="Nikhil Sharma — Hospitality professional, AI builder, and full stack developer. BBA student at Turiba University, Rīga." />
-    <meta name="keywords" content="Nikhil Sharma, portfolio, hospitality, AI, full stack developer, Rīga, Latvia" />
-    <meta property="og:title" content="Nikhil Sharma | Portfolio" />
-    <meta property="og:description" content="Hospitality professional, AI builder, and full stack developer." />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nikhil Sharma — Hospitality x AI | Riga, Latvia</title>
+    <meta name="description" content="Nikhil Sharma — International Tourism & Hospitality Management student at Turiba University, Riga. Michelin Green Star kitchen experience. Building AI agents, automation tools, and hospitality tech. Available for internships, graduate roles & startup work.">
+    <meta name="keywords" content="Nikhil Sharma, Hospitality, AI, Tourism, Riga, Latvia, Turiba University, Michelin Green Star, Pavaru Maja, TUI Blue, AI Agents, Automation">
+    <meta name="author" content="Nikhil Sharma">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://nikhilsharma-ruby.vercel.app/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nikhilsharma-ruby.vercel.app/">
+    <meta property="og:title" content="Nikhil Sharma — Hospitality x AI">
+    <meta property="og:description" content="International Tourism & Hospitality Management student. Michelin Green Star kitchen experience. Building AI agents and hospitality tech.">
+    <meta property="og:image" content="https://nikhilsharma-ruby.vercel.app/og-image.jpg">
+    <meta property="og:site_name" content="Nikhil Sharma">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://nikhilsharma-ruby.vercel.app/">
+    <meta name="twitter:title" content="Nikhil Sharma — Hospitality x AI">
+    <meta name="twitter:description" content="International Tourism & Hospitality Management student. Michelin Green Star kitchen experience. Building AI agents and hospitality tech.">
+    <meta name="twitter:image" content="https://nikhilsharma-ruby.vercel.app/og-image.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,&lt;svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'&gt;&lt;text y='.9em' font-size='90'&gt;NS&lt;/text&gt;&lt;/svg&gt;">
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        display: ['Space Grotesk', 'Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Nikhil Sharma",
+        "jobTitle": "Hospitality Professional & AI Builder",
+        "description": "International Tourism & Hospitality Management student at Turiba University. Experience in Michelin Green Star fine dining, international resort F&B, and AI-powered hospitality tools.",
+        "url": "https://nikhilsharma-ruby.vercel.app/",
+        "email": "nikhilsharmawork1@gmail.com",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Riga",
+            "addressCountry": "Latvia"
+        },
+        "alumniOf": {
+            "@type": "EducationalOrganization",
+            "name": "Turiba University",
+            "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Riga",
+                "addressCountry": "Latvia"
+            }
+        },
+        "knowsAbout": ["Hospitality Management", "Fine Dining", "AI Agents", "Automation", "Tourism", "Food & Beverage"],
+        "worksFor": [
+            {
+                "@type": "Organization",
+                "name": "Pavaru Maja",
+                "description": "Michelin Green Star restaurant"
+            }
+        ]
+    }
+    </script>
+
+    <style>
+        /* ===== CSS Custom Properties ===== */
+        :root {
+            --bg: #0a0a0a;
+            --bg-elevated: #111111;
+            --bg-card: rgba(255,255,255,0.03);
+            --text: #f5f5f5;
+            --text-secondary: #a0a0a0;
+            --text-muted: #555555;
+            --border: rgba(255,255,255,0.06);
+            --accent: #f5f5f5;
+            --glass-bg: rgba(255,255,255,0.03);
+            --glass-border: rgba(255,255,255,0.06);
+            --grad-1: rgba(120,80,255,0.12);
+            --grad-2: rgba(60,120,255,0.08);
+            --grad-3: rgba(255,80,120,0.06);
+        }
+
+        .light {
+            --bg: #fafafa;
+            --bg-elevated: #ffffff;
+            --bg-card: rgba(0,0,0,0.02);
+            --text: #111111;
+            --text-secondary: #555555;
+            --text-muted: #999999;
+            --border: rgba(0,0,0,0.06);
+            --accent: #111111;
+            --glass-bg: rgba(255,255,255,0.6);
+            --glass-border: rgba(0,0,0,0.06);
+            --grad-1: rgba(120,80,255,0.08);
+            --grad-2: rgba(60,120,255,0.05);
+            --grad-3: rgba(255,80,120,0.04);
+        }
+
+        /* ===== Base ===== */
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+
+        /* ===== Noise Texture ===== */
+        .noise {
+            position: fixed; inset:0; pointer-events:none; z-index:9999; opacity:0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        /* ===== Ambient Gradients ===== */
+        .ambient {
+            position: fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden;
+        }
+        .ambient-orb {
+            position: absolute; border-radius:50%; filter:blur(120px); opacity:0.5;
+            animation: orbFloat 12s ease-in-out infinite;
+        }
+        .dark .ambient-orb { opacity:0.35; }
+        .light .ambient-orb { opacity:0.25; }
+        .orb-1 { width:600px; height:600px; background:var(--grad-1); top:-10%; left:-5%; animation-delay:0s; }
+        .orb-2 { width:500px; height:500px; background:var(--grad-2); top:30%; right:-10%; animation-delay:-4s; }
+        .orb-3 { width:400px; height:400px; background:var(--grad-3); bottom:10%; left:20%; animation-delay:-8s; }
+
+        @keyframes orbFloat {
+            0%,100% { transform:translate(0,0) scale(1); }
+            33% { transform:translate(30px,-40px) scale(1.05); }
+            66% { transform:translate(-20px,20px) scale(0.95); }
+        }
+
+        /* ===== Scroll Progress ===== */
+        .scroll-progress {
+            position: fixed; top:0; left:0; height:2px; background:var(--text);
+            z-index:10000; transform-origin:left; transform:scaleX(0);
+            transition: transform 0.1s linear;
+        }
+
+        /* ===== Glass ===== */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(24px) saturate(150%);
+            -webkit-backdrop-filter: blur(24px) saturate(150%);
+            border: 1px solid var(--glass-border);
+        }
+
+        /* ===== Card ===== */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(128,128,128,0.15);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+        .light .card:hover { box-shadow: 0 20px 60px rgba(0,0,0,0.08); }
+
+        /* ===== Reveal Animation ===== */
+        .reveal {
+            opacity: 0; transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.4,0,0.2,1), transform 0.8s cubic-bezier(0.4,0,0.2,1);
+        }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        .stagger > * {
+            opacity: 0; transform: translateY(24px);
+        }
+        .stagger.visible > *:nth-child(1) { animation: staggerIn 0.6s 0.05s forwards; }
+        .stagger.visible > *:nth-child(2) { animation: staggerIn 0.6s 0.12s forwards; }
+        .stagger.visible > *:nth-child(3) { animation: staggerIn 0.6s 0.19s forwards; }
+        .stagger.visible > *:nth-child(4) { animation: staggerIn 0.6s 0.26s forwards; }
+        .stagger.visible > *:nth-child(5) { animation: staggerIn 0.6s 0.33s forwards; }
+        .stagger.visible > *:nth-child(6) { animation: staggerIn 0.6s 0.40s forwards; }
+
+        @keyframes staggerIn {
+            to { opacity:1; transform:translateY(0); }
+        }
+
+        /* ===== Typewriter ===== */
+        .cursor::after {
+            content: '|';
+            animation: blink 1s step-end infinite;
+            color: var(--text-muted);
+        }
+        @keyframes blink { 50% { opacity:0; } }
+
+        /* ===== Magnetic Button ===== */
+        .magnetic {
+            position: relative; overflow: hidden;
+            transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
+        }
+        .magnetic::before {
+            content:''; position:absolute; inset:0;
+            background: linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.06) 100%);
+            opacity:0; transition: opacity 0.3s ease;
+        }
+        .magnetic:hover::before { opacity:1; }
+
+        /* ===== Link Underline ===== */
+        .link-line { position: relative; }
+        .link-line::after {
+            content:''; position:absolute; bottom:-2px; left:0; width:0; height:1px;
+            background: var(--text); transition: width 0.3s ease;
+        }
+        .link-line:hover::after { width:100%; }
+
+        /* ===== Timeline ===== */
+        .timeline-item { position: relative; padding-left: 32px; }
+        .timeline-item::before {
+            content:''; position:absolute; left:0; top:8px; width:10px; height:10px;
+            border-radius:50%; background: var(--text-muted); border: 2px solid var(--bg);
+            transition: all 0.3s ease; z-index:2;
+        }
+        .timeline-item:hover::before { background: var(--text); transform: scale(1.3); }
+        .timeline-line {
+            position:absolute; left:4px; top:18px; bottom:-24px; width:1px;
+            background: linear-gradient(to bottom, var(--border), transparent);
+        }
+        .timeline-item:last-child .timeline-line { display:none; }
+
+        /* ===== Tag ===== */
+        .tag {
+            display:inline-flex; align-items:center; gap:6px;
+            padding: 6px 14px; border-radius: 100px; font-size: 0.8rem; font-weight: 500;
+            background: var(--bg-card); border: 1px solid var(--border);
+            transition: all 0.3s ease; cursor: default;
+        }
+        .tag:hover { transform: scale(1.05); border-color: rgba(128,128,128,0.2); }
+
+        /* ===== Section Number ===== */
+        .sec-num {
+            font-family: 'Space Grotesk', sans-serif; font-size: 0.7rem;
+            font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        /* ===== Scrollbar ===== */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 3px; }
+
+        /* ===== Selection ===== */
+        ::selection { background: rgba(128,128,128,0.25); color: inherit; }
+
+        /* ===== Back to Top ===== */
+        .back-top {
+            position: fixed; bottom: 32px; right: 32px; z-index: 100;
+            width: 48px; height: 48px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            background: var(--bg-elevated); border: 1px solid var(--border);
+            color: var(--text-secondary); cursor: pointer;
+            opacity: 0; transform: translateY(20px); pointer-events: none;
+            transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+        }
+        .back-top.visible { opacity:1; transform:translateY(0); pointer-events:auto; }
+        .back-top:hover { color: var(--text); border-color: rgba(128,128,128,0.2); }
+
+        /* ===== Project Card Gradient ===== */
+        .pg-1 { background: linear-gradient(135deg, rgba(139,92,246,0.15), rgba(59,130,246,0.1)); }
+        .pg-2 { background: linear-gradient(135deg, rgba(59,130,246,0.15), rgba(6,182,212,0.1)); }
+        .pg-3 { background: linear-gradient(135deg, rgba(16,185,129,0.15), rgba(20,184,166,0.1)); }
+        .pg-4 { background: linear-gradient(135deg, rgba(249,115,22,0.15), rgba(239,68,68,0.1)); }
+
+        /* ===== Mobile Menu ===== */
+        .mobile-menu {
+            position: fixed; inset:0; z-index:90; background: var(--bg);
+            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+            opacity:0; pointer-events:none; transition: opacity 0.4s ease;
+        }
+        .mobile-menu.open { opacity:1; pointer-events:auto; }
+
+        /* ===== Hamburger ===== */
+        .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; padding:4px; }
+        .hamburger span {
+            display:block; width:22px; height:1.5px; background: var(--text);
+            transition: all 0.3s ease; transform-origin: center;
+        }
+        .hamburger.active span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+        .hamburger.active span:nth-child(2) { opacity:0; }
+        .hamburger.active span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+        @media (max-width: 768px) {
+            .hamburger { display:flex; }
+            .desktop-nav { display:none; }
+        }
+
+        /* ===== Reduced Motion ===== */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+            .reveal { opacity:1; transform:none; }
+        }
+    </style>
 </head>
-<body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+<body class="dark">
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Noise Overlay -->
+    <div class="noise"></div>
+
+    <!-- Ambient Gradients -->
+    <div class="ambient">
+        <div class="ambient-orb orb-1"></div>
+        <div class="ambient-orb orb-2"></div>
+        <div class="ambient-orb orb-3"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 py-4" id="navbar">
+        <div class="max-w-6xl mx-auto">
+            <div class="glass rounded-2xl px-5 sm:px-6 py-3 flex items-center justify-between">
+                <a href="#" class="font-display font-bold text-lg tracking-tight hover:opacity-70 transition-opacity">NS</a>
+
+                <div class="desktop-nav hidden md:flex items-center gap-8">
+                    <a href="#about" class="text-sm text-[var(--text-secondary)] hover:text-[var(--text)] transition-colors link-line">About</a>
+                    <a href="#experience" class="text-sm text-[var(--text-secondary)] hover:text-[var(--text)] transition-colors link-line">Experience</a>
+                    <a href="#projects" class="text-sm text-[var(--text-secondary)] hover:text-[var(--text)] transition-colors link-line">Projects</a>
+                    <a href="#ai-tech" class="text-sm text-[var(--text-secondary)] hover:text-[var(--text)] transition-colors link-line">AI &amp; Tech</a>
+                    <a href="#skills" class="text-sm text-[var(--text-secondary)] hover:text-[var(--text)] transition-colors link-line">Skills</a>
+                    <a href="#contact" class="text-sm text-[var(--text-secondary)] hover:text-[var(--text)] transition-colors link-line">Contact</a>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <button id="themeToggle" class="p-2.5 rounded-xl hover:bg-[var(--bg-card)] transition-colors" aria-label="Toggle theme">
+                        <svg id="sunIcon" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"/>
+                        </svg>
+                        <svg id="moonIcon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/>
+                        </svg>
+                    </button>
+                    <div class="hamburger md:hidden" id="hamburger" aria-label="Menu">
+                        <span></span><span></span><span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#about" class="text-2xl font-display font-medium text-[var(--text-secondary)] hover:text-[var(--text)] transition-colors mobile-link">About</a>
+        <a href="#experience" class="text-2xl font-display font-medium text-[var(--text-secondary)] hover:text-[var(--text)] transition-colors mobile-link">Experience</a>
+        <a href="#projects" class="text-2xl font-display font-medium text-[var(--text-secondary)] hover:text-[var(--text)] transition-colors mobile-link">Projects</a>
+        <a href="#ai-tech" class="text-2xl font-display font-medium text-[var(--text-secondary)] hover:text-[var(--text)] transition-colors mobile-link">AI &amp; Tech</a>
+        <a href="#skills" class="text-2xl font-display font-medium text-[var(--text-secondary)] hover:text-[var(--text)] transition-colors mobile-link">Skills</a>
+        <a href="#contact" class="text-2xl font-display font-medium text-[var(--text-secondary)] hover:text-[var(--text)] transition-colors mobile-link">Contact</a>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- HERO                                         -->
+    <!-- ============================================ -->
+    <section class="relative min-h-screen flex items-center justify-center px-6 pt-24 pb-16">
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <div class="reveal">
+                <p class="sec-num mb-8">Hello — I am</p>
+                <h1 class="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-8 leading-[1.05]">
+                    Nikhil Sharma
+                </h1>
+                <div class="h-10 sm:h-12 mb-10 flex items-center justify-center">
+                    <p class="text-lg sm:text-xl md:text-2xl text-[var(--text-secondary)] font-light cursor" id="typewriter"></p>
+                </div>
+                <p class="text-[var(--text-muted)] text-base sm:text-lg max-w-xl mx-auto mb-12 leading-relaxed">
+                    Based in Riga, Latvia. Available for internships, graduate roles &amp; startup work.
+                </p>
+                <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
+                    <a href="mailto:nikhilsharmawork1@gmail.com" class="magnetic px-7 py-3.5 bg-[var(--text)] text-[var(--bg)] rounded-2xl font-medium text-sm hover:scale-[1.03] transition-transform shadow-lg">
+                        Get in touch
+                    </a>
+                    <a href="#" class="magnetic px-7 py-3.5 glass rounded-2xl font-medium text-sm hover:scale-[1.03] transition-transform" onclick="alert('CV download coming soon'); return false;">
+                        Download CV
+                    </a>
+                </div>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce opacity-40">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- ABOUT                                        -->
+    <!-- ============================================ -->
+    <section id="about" class="relative py-28 sm:py-36 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-12 gap-12 md:gap-16 items-start">
+                <div class="md:col-span-4 reveal">
+                    <p class="sec-num mb-4">01</p>
+                    <h2 class="font-display text-4xl sm:text-5xl font-bold tracking-tight">About</h2>
+                </div>
+                <div class="md:col-span-8 reveal">
+                    <p class="text-xl sm:text-2xl md:text-3xl font-light leading-relaxed mb-8 text-[var(--text-secondary)]">
+                        An Indian student in Latvia, learning hospitality from the kitchen out.
+                    </p>
+                    <p class="text-base sm:text-lg leading-relaxed mb-6 text-[var(--text-secondary)]">
+                        I am studying International Tourism and Hospitality Management at Turiba University in Riga, and spending my time outside class in real kitchens, bars and resort floors.
+                    </p>
+                    <p class="text-base sm:text-lg leading-relaxed mb-6 text-[var(--text-secondary)]">
+                        My path so far has moved between Michelin Green Star fine dining, an international resort in Greece, and a Belgian gastro pub in Riga — each one a different angle on what hospitality actually means.
+                    </p>
+                    <p class="text-base sm:text-lg leading-relaxed mb-12 text-[var(--text-secondary)]">
+                        In parallel, I build with AI. I am interested in where thoughtful service meets useful technology: tools for travellers, dashboards for operators, and small agents that take real work off people's plates.
+                    </p>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                        <div class="card p-5">
+                            <p class="text-[var(--text-muted)] text-[0.65rem] uppercase tracking-widest mb-2">Location</p>
+                            <p class="font-medium text-sm">Riga, Latvia</p>
+                        </div>
+                        <div class="card p-5">
+                            <p class="text-[var(--text-muted)] text-[0.65rem] uppercase tracking-widest mb-2">Study</p>
+                            <p class="font-medium text-sm">Turiba University</p>
+                        </div>
+                        <div class="card p-5">
+                            <p class="text-[var(--text-muted)] text-[0.65rem] uppercase tracking-widest mb-2">Focus</p>
+                            <p class="font-medium text-sm">Hospitality x Tourism x AI</p>
+                        </div>
+                        <div class="card p-5">
+                            <p class="text-[var(--text-muted)] text-[0.65rem] uppercase tracking-widest mb-2">Open to</p>
+                            <p class="font-medium text-sm">Internships x Grad roles x Startups</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 flex flex-wrap gap-2.5">
+                        <span class="tag">English</span>
+                        <span class="tag">Hindi</span>
+                        <span class="tag">Latvian (basics)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- EXPERIENCE                                   -->
+    <!-- ============================================ -->
+    <section id="experience" class="relative py-28 sm:py-36 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-16 sm:mb-20 reveal">
+                <p class="sec-num mb-4">02</p>
+                <h2 class="font-display text-4xl sm:text-5xl font-bold tracking-tight">Experience</h2>
+            </div>
+
+            <div class="max-w-3xl" id="expList">
+                <!-- Pavaru Maja -->
+                <div class="timeline-item pb-12 reveal">
+                    <div class="timeline-line"></div>
+                    <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
+                        <div>
+                            <div class="flex items-center gap-3 mb-1 flex-wrap">
+                                <h3 class="font-display text-xl sm:text-2xl font-semibold">Commis I / Kitchen Assistant</h3>
+                                <span class="px-2.5 py-0.5 rounded-full text-[0.65rem] font-semibold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">Current</span>
+                            </div>
+                            <p class="text-[var(--text-secondary)]">Pavaru Maja</p>
+                            <p class="text-[var(--text-muted)] text-sm">Michelin Green Star x Ligatne, Latvia</p>
+                        </div>
+                        <span class="text-[var(--text-muted)] text-xs font-mono whitespace-nowrap">2024 — Present</span>
+                    </div>
+                    <ul class="space-y-2.5 text-[var(--text-secondary)] text-sm sm:text-base">
+                        <li class="flex items-start gap-3">
+                            <span class="w-1 h-1 rounded-full bg-[var(--text-muted)] mt-2.5 flex-shrink-0"></span>
+                            <span>Cooking and plating in a fine-dining kitchen recognised for sustainability.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-1 h-1 rounded-full bg-[var(--text-muted)] mt-2.5 flex-shrink-0"></span>
+                            <span>Mise en place, station management, and supporting service for tasting menus.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-1 h-1 rounded-full bg-[var(--text-muted)] mt-2.5 flex-shrink-0"></span>
+                            <span>Working with local, seasonal Latvian produce and zero-waste techniques.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- TUI Blue -->
+                <div class="timeline-item pb-12 reveal">
+                    <div class="timeline-line"></div>
+                    <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
+                        <div>
+                            <h3 class="font-display text-xl sm:text-2xl font-semibold mb-1">Food &amp; Beverage Intern</h3>
+                            <p class="text-[var(--text-secondary)]">TUI Blue Hotel</p>
+                            <p class="text-[var(--text-muted)] text-sm">Greece</p>
+                        </div>
+                        <span class="px-2.5 py-0.5 rounded-full text-[0.65rem] font-semibold bg-amber-500/10 text-amber-500 border border-amber-500/20 w-fit">Seasonal</span>
+                    </div>
+                    <ul class="space-y-2.5 text-[var(--text-secondary)] text-sm sm:text-base">
+                        <li class="flex items-start gap-3">
+                            <span class="w-1 h-1 rounded-full bg-[var(--text-muted)] mt-2.5 flex-shrink-0"></span>
+                            <span>International resort service across restaurants, bars and events.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-1 h-1 rounded-full bg-[var(--text-muted)] mt-2.5 flex-shrink-0"></span>
+                            <span>Guest-facing hospitality in a high-volume, multicultural environment.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-1 h-1 rounded-full bg-[var(--text-muted)] mt-2.5 flex-shrink-0"></span>
+                            <span>Cross-trained across F&amp;B outlets, banquets and pool service.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Duvel's -->
+                <div class="timeline-item reveal">
+                    <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 mb-4">
+                        <div>
+                            <h3 class="font-display text-xl sm:text-2xl font-semibold mb-1">Bartender</h3>
+                            <p class="text-[var(--text-secondary)]">Gastro Pub Duvel's</p>
+                            <p class="text-[var(--text-muted)] text-sm">Riga, Latvia</p>
+                        </div>
+                        <span class="text-[var(--text-muted)] text-xs font-mono whitespace-nowrap">Previous</span>
+                    </div>
+                    <ul class="space-y-2.5 text-[var(--text-secondary)] text-sm sm:text-base">
+                        <li class="flex items-start gap-3">
+                            <span class="w-1 h-1 rounded-full bg-[var(--text-muted)] mt-2.5 flex-shrink-0"></span>
+                            <span>Crafting classic cocktails and curating a Belgian-led beer programme.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-1 h-1 rounded-full bg-[var(--text-muted)] mt-2.5 flex-shrink-0"></span>
+                            <span>Owned bar inventory, stock control and supplier coordination.</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <span class="w-1 h-1 rounded-full bg-[var(--text-muted)] mt-2.5 flex-shrink-0"></span>
+                            <span>Built regulars through attentive, knowledgeable guest experience.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- FEATURED PROJECTS                            -->
+    <!-- ============================================ -->
+    <section id="projects" class="relative py-28 sm:py-36 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-16 sm:mb-20 reveal">
+                <p class="sec-num mb-4">03</p>
+                <h2 class="font-display text-4xl sm:text-5xl font-bold tracking-tight">Featured Projects</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-5 stagger">
+                <!-- AI Travel Planner -->
+                <div class="card overflow-hidden group cursor-pointer reveal">
+                    <div class="h-48 pg-1 relative overflow-hidden flex items-center justify-center">
+                        <svg class="w-14 h-14 text-violet-400/40 group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <div class="absolute top-4 left-4 flex gap-2">
+                            <span class="px-2.5 py-1 rounded-full text-[0.65rem] font-medium glass">AI</span>
+                            <span class="px-2.5 py-1 rounded-full text-[0.65rem] font-medium glass">Travel</span>
+                        </div>
+                    </div>
+                    <div class="p-7">
+                        <h3 class="font-display text-lg font-semibold mb-2 group-hover:text-[var(--text-secondary)] transition-colors">AI Travel Planner</h3>
+                        <p class="text-[var(--text-secondary)] text-sm leading-relaxed mb-5">
+                            Conversational itinerary builder that turns loose travel ideas into day-by-day plans with stays, transit and local picks.
+                        </p>
+                        <div class="flex items-center gap-4">
+                            <a href="#" class="text-xs font-medium text-[var(--text-muted)] hover:text-[var(--text)] transition-colors flex items-center gap-1.5" onclick="alert('GitHub repository coming soon'); return false;">
+                                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                Source
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Latvia Tourism Platform -->
+                <div class="card overflow-hidden group cursor-pointer reveal">
+                    <div class="h-48 pg-2 relative overflow-hidden flex items-center justify-center">
+                        <svg class="w-14 h-14 text-blue-400/40 group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
+                        </svg>
+                        <div class="absolute top-4 left-4 flex gap-2">
+                            <span class="px-2.5 py-1 rounded-full text-[0.65rem] font-medium glass">Web</span>
+                            <span class="px-2.5 py-1 rounded-full text-[0.65rem] font-medium glass">Tourism</span>
+                        </div>
+                    </div>
+                    <div class="p-7">
+                        <h3 class="font-display text-lg font-semibold mb-2 group-hover:text-[var(--text-secondary)] transition-colors">Latvia Tourism Platform</h3>
+                        <p class="text-[var(--text-secondary)] text-sm leading-relaxed mb-5">
+                            An information hub for visitors to Latvia — regions, seasons, food culture and off-the-map experiences.
+                        </p>
+                        <div class="flex items-center gap-4">
+                            <a href="#" class="text-xs font-medium text-[var(--text-muted)] hover:text-[var(--text)] transition-colors flex items-center gap-1.5" onclick="alert('GitHub repository coming soon'); return false;">
+                                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                Source
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hospitality Analytics -->
+                <div class="card overflow-hidden group cursor-pointer reveal">
+                    <div class="h-48 pg-3 relative overflow-hidden flex items-center justify-center">
+                        <svg class="w-14 h-14 text-emerald-400/40 group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                        </svg>
+                        <div class="absolute top-4 left-4 flex gap-2">
+                            <span class="px-2.5 py-1 rounded-full text-[0.65rem] font-medium glass">Data</span>
+                            <span class="px-2.5 py-1 rounded-full text-[0.65rem] font-medium glass">F&amp;B</span>
+                        </div>
+                    </div>
+                    <div class="p-7">
+                        <h3 class="font-display text-lg font-semibold mb-2 group-hover:text-[var(--text-secondary)] transition-colors">Hospitality Operations Analytics</h3>
+                        <p class="text-[var(--text-secondary)] text-sm leading-relaxed mb-5">
+                            Lightweight dashboards for restaurants and small hotels: covers, sales mix, stock and labour at a glance.
+                        </p>
+                        <div class="flex items-center gap-4">
+                            <a href="#" class="text-xs font-medium text-[var(--text-muted)] hover:text-[var(--text)] transition-colors flex items-center gap-1.5" onclick="alert('GitHub repository coming soon'); return false;">
+                                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                Source
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Agent Experiments -->
+                <div class="card overflow-hidden group cursor-pointer reveal">
+                    <div class="h-48 pg-4 relative overflow-hidden flex items-center justify-center">
+                        <svg class="w-14 h-14 text-orange-400/40 group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                        <div class="absolute top-4 left-4 flex gap-2">
+                            <span class="px-2.5 py-1 rounded-full text-[0.65rem] font-medium glass">AI</span>
+                            <span class="px-2.5 py-1 rounded-full text-[0.65rem] font-medium glass">R&amp;D</span>
+                        </div>
+                    </div>
+                    <div class="p-7">
+                        <h3 class="font-display text-lg font-semibold mb-2 group-hover:text-[var(--text-secondary)] transition-colors">AI Agent Experiments</h3>
+                        <p class="text-[var(--text-secondary)] text-sm leading-relaxed mb-5">
+                            Prototypes exploring autonomous agents for booking, concierge tasks and back-of-house automation.
+                        </p>
+                        <div class="flex items-center gap-4">
+                            <a href="#" class="text-xs font-medium text-[var(--text-muted)] hover:text-[var(--text)] transition-colors flex items-center gap-1.5" onclick="alert('GitHub repository coming soon'); return false;">
+                                <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                                Source
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ============================================ -->
+    <!-- AI & TECHNOLOGY                              -->
+    <!-- ============================================ -->
+    <section id="ai-tech" class="relative py-28 sm:py-36 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-16 sm:mb-20 reveal">
+                <p class="sec-num mb-4">04</p>
+                <h2 class="font-display text-4xl sm:text-5xl font-bold tracking-tight">AI &amp; Technology</h2>
+                <p class="text-[var(--text-secondary)] mt-4 max-w-2xl">Building at the intersection of hospitality operations and intelligent automation.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 stagger">
+                <!-- AI Agents -->
+                <div class="card p-7 reveal group">
+                    <div class="w-11 h-11 rounded-xl bg-violet-500/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                        <svg class="w-5 h-5 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-base font-semibold mb-2">AI Agents</h3>
+                    <p class="text-[var(--text-secondary)] text-sm leading-relaxed">
+                        Experimenting with autonomous agents for booking workflows, concierge responses, and back-of-house task automation using LLM frameworks.
+                    </p>
+                </div>
+
+                <!-- AWS -->
+                <div class="card p-7 reveal group">
+                    <div class="w-11 h-11 rounded-xl bg-amber-500/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                        <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-base font-semibold mb-2">AWS Cloud</h3>
+                    <p class="text-[var(--text-secondary)] text-sm leading-relaxed">
+                        Learning cloud infrastructure on AWS — Lambda, S3, and serverless architectures for scalable hospitality backend services.
+                    </p>
+                </div>
+
+                <!-- GitHub -->
+                <div class="card p-7 reveal group">
+                    <div class="w-11 h-11 rounded-xl bg-gray-500/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                        <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-base font-semibold mb-2">GitHub &amp; Open Source</h3>
+                    <p class="text-[var(--text-secondary)] text-sm leading-relaxed">
+                        Version control, collaborative development, and contributing to open-source tools for the hospitality and travel ecosystem.
+                    </p>
+                </div>
+
+                <!-- Vercel -->
+                <div class="card p-7 reveal group">
+                    <div class="w-11 h-11 rounded-xl bg-white/5 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                        <svg class="w-5 h-5 text-white/60" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M24 22.525H0l12-21.05 12 21.05z"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-base font-semibold mb-2">Vercel &amp; Frontend</h3>
+                    <p class="text-[var(--text-secondary)] text-sm leading-relaxed">
+                        Deploying fast, modern web experiences with Next.js and Vercel. Focused on performance, SEO, and clean UI architecture.
+                    </p>
+                </div>
+
+                <!-- Python -->
+                <div class="card p-7 reveal group">
+                    <div class="w-11 h-11 rounded-xl bg-blue-500/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                        <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-base font-semibold mb-2">Python &amp; Automation</h3>
+                    <p class="text-[var(--text-secondary)] text-sm leading-relaxed">
+                        Writing Python scripts for data pipelines, automation workflows, and API integrations that reduce manual work in hospitality operations.
+                    </p>
+                </div>
+
+                <!-- Automation -->
+                <div class="card p-7 reveal group">
+                    <div class="w-11 h-11 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+                        <svg class="w-5 h-5 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-display text-base font-semibold mb-2">Workflow Automation</h3>
+                    <p class="text-[var(--text-secondary)] text-sm leading-relaxed">
+                        Connecting tools and APIs to automate repetitive tasks — from inventory alerts to guest communication and reporting pipelines.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- SKILLS                                       -->
+    <!-- ============================================ -->
+    <section id="skills" class="relative py-28 sm:py-36 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-16 sm:mb-20 reveal">
+                <p class="sec-num mb-4">05</p>
+                <h2 class="font-display text-4xl sm:text-5xl font-bold tracking-tight">Skills</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-5 stagger">
+                <!-- Hospitality -->
+                <div class="card p-8 reveal">
+                    <div class="flex items-center gap-3 mb-7">
+                        <div class="w-10 h-10 rounded-xl bg-[var(--text)]/5 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-[var(--text)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1.001A3.75 3.75 0 0012 18z"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-display text-lg font-semibold">Hospitality</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tag">Hospitality Operations</span>
+                        <span class="tag">Fine Dining</span>
+                        <span class="tag">Food &amp; Beverage Service</span>
+                        <span class="tag">Bartending</span>
+                        <span class="tag">Guest Experience</span>
+                        <span class="tag">Inventory Management</span>
+                        <span class="tag">Mise en Place</span>
+                        <span class="tag">Station Management</span>
+                    </div>
+                </div>
+
+                <!-- Technology -->
+                <div class="card p-8 reveal">
+                    <div class="flex items-center gap-3 mb-7">
+                        <div class="w-10 h-10 rounded-xl bg-[var(--text)]/5 flex items-center justify-center">
+                            <svg class="w-5 h-5 text-[var(--text)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/>
+                            </svg>
+                        </div>
+                        <h3 class="font-display text-lg font-semibold">Technology</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="tag">AI Tools</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">AWS</span>
+                        <span class="tag">GitHub</span>
+                        <span class="tag">Vercel</span>
+                        <span class="tag">Automation</span>
+                        <span class="tag">APIs</span>
+                        <span class="tag">Microsoft Office</span>
+                        <span class="tag">Web Development</span>
+                        <span class="tag">Data Analysis</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- EDUCATION                                    -->
+    <!-- ============================================ -->
+    <section class="relative py-28 sm:py-36 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-16 sm:mb-20 reveal">
+                <p class="sec-num mb-4">06</p>
+                <h2 class="font-display text-4xl sm:text-5xl font-bold tracking-tight">Education</h2>
+            </div>
+
+            <div class="card p-8 md:p-10 reveal">
+                <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-6">
+                    <div>
+                        <h3 class="font-display text-2xl font-semibold mb-2">Turiba University</h3>
+                        <p class="text-[var(--text-secondary)]">Riga, Latvia</p>
+                    </div>
+                    <span class="px-3 py-1 rounded-full text-xs font-medium bg-blue-500/10 text-blue-500 border border-blue-500/20 w-fit">In progress</span>
+                </div>
+                <p class="text-lg font-medium mb-4">BBA — International Tourism &amp; Hospitality Management</p>
+                <p class="text-[var(--text-secondary)] leading-relaxed">
+                    Coursework across hotel and restaurant operations, tourism economics, destination management, service design and intercultural communication — paired with hands-on industry placements across Europe.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- CONTACT                                      -->
+    <!-- ============================================ -->
+    <section id="contact" class="relative py-28 sm:py-36 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="reveal">
+                <p class="sec-num mb-4">07 — Contact</p>
+                <h2 class="font-display text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6">Let's work together</h2>
+                <p class="text-lg sm:text-xl text-[var(--text-secondary)] mb-12 max-w-2xl mx-auto leading-relaxed">
+                    Whether you are hiring for hospitality, scouting a graduate for tourism, or building something at the intersection of travel and AI — I would love to hear from you.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+                    <a href="mailto:nikhilsharmawork1@gmail.com" class="magnetic px-10 py-5 bg-[var(--text)] text-[var(--bg)] rounded-2xl font-medium text-base hover:scale-[1.03] transition-transform shadow-xl">
+                        nikhilsharmawork1@gmail.com
+                    </a>
+                </div>
+
+                <div class="flex items-center justify-center gap-6 mb-16">
+                    <a href="#" class="text-[var(--text-muted)] hover:text-[var(--text)] transition-colors" aria-label="GitHub" onclick="alert('GitHub profile coming soon'); return false;">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    </a>
+                    <a href="#" class="text-[var(--text-muted)] hover:text-[var(--text)] transition-colors" aria-label="LinkedIn" onclick="alert('LinkedIn profile coming soon'); return false;">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </a>
+                    <a href="mailto:nikhilsharmawork1@gmail.com" class="text-[var(--text-muted)] hover:text-[var(--text)] transition-colors" aria-label="Email">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
+                        </svg>
+                    </a>
+                </div>
+
+                <div class="pt-12 border-t border-[var(--border)]">
+                    <p class="text-[var(--text-muted)] text-sm">
+                        &copy; 2026 Nikhil Sharma. Built with care in Riga.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Back to Top -->
+    <button class="back-top" id="backTop" aria-label="Back to top">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5"/>
+        </svg>
+    </button>
+
+    <!-- ============================================ -->
+    <!-- JAVASCRIPT                                   -->
+    <!-- ============================================ -->
+    <script>
+        // ===== Theme Toggle =====
+        const themeToggle = document.getElementById('themeToggle');
+        const sunIcon = document.getElementById('sunIcon');
+        const moonIcon = document.getElementById('moonIcon');
+        const html = document.documentElement;
+        const body = document.body;
+
+        function setTheme(isDark) {
+            if (isDark) {
+                html.classList.add('dark');
+                html.classList.remove('light');
+                body.classList.add('dark');
+                body.classList.remove('light');
+                sunIcon.classList.add('hidden');
+                moonIcon.classList.remove('hidden');
+            } else {
+                html.classList.remove('dark');
+                html.classList.add('light');
+                body.classList.remove('dark');
+                body.classList.add('light');
+                sunIcon.classList.remove('hidden');
+                moonIcon.classList.add('hidden');
+            }
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        // Initialize theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            setTheme(savedTheme === 'dark');
+        } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+            setTheme(false);
+        } else {
+            setTheme(true);
+        }
+
+        themeToggle.addEventListener('click', () => {
+            setTheme(!body.classList.contains('dark'));
+        });
+
+        // ===== Typewriter Effect =====
+        const phrases = [
+            'Tourism & Hospitality Student',
+            'Hospitality Professional',
+            'AI Builder'
+        ];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typewriterEl = document.getElementById('typewriter');
+
+        function typeWriter() {
+            const current = phrases[phraseIndex];
+            if (isDeleting) {
+                typewriterEl.textContent = current.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typewriterEl.textContent = current.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let speed = isDeleting ? 50 : 100;
+            if (!isDeleting && charIndex === current.length) {
+                speed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                speed = 500;
+            }
+            setTimeout(typeWriter, speed);
+        }
+        typeWriter();
+
+        // ===== Scroll Reveal =====
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        const staggerObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    staggerObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.stagger').forEach(el => staggerObserver.observe(el));
+
+        // ===== Scroll Progress =====
+        const scrollProgress = document.getElementById('scrollProgress');
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = scrollTop / docHeight;
+            scrollProgress.style.transform = `scaleX(${progress})`;
+        }, { passive: true });
+
+        // ===== Back to Top =====
+        const backTop = document.getElementById('backTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 600) {
+                backTop.classList.add('visible');
+            } else {
+                backTop.classList.remove('visible');
+            }
+        }, { passive: true });
+
+        backTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ===== Smooth Scroll for Anchor Links =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href === '#') return;
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // ===== Mobile Menu =====
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('open');
+            document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                mobileMenu.classList.remove('open');
+                document.body.style.overflow = '';
+            });
+        });
+
+        // ===== Magnetic Button Effect =====
+        document.querySelectorAll('.magnetic').forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px) scale(1.03)`;
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'translate(0, 0) scale(1)';
+            });
+        });
+
+        // ===== Parallax Orbs on Mouse Move =====
+        document.addEventListener('mousemove', (e) => {
+            const orbs = document.querySelectorAll('.ambient-orb');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            orbs.forEach((orb, i) => {
+                const speed = (i + 1) * 15;
+                orb.style.transform = `translate(${(x - 0.5) * speed}px, ${(y - 0.5) * speed}px)`;
+            });
+        });
+
+        // ===== Navbar Background on Scroll =====
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.querySelector('.glass').style.background = 'var(--glass-bg)';
+            }
+        }, { passive: true });
+    </script>
 </body>
 </html>
