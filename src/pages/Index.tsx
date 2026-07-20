@@ -10,12 +10,12 @@ import {
   ChefHat,
   Wine,
   Hotel,
-  Sparkles,
   GraduationCap,
   Code2,
   Brain,
   BarChart3,
-  Plane,
+  Banknote,
+  Users,
 } from "lucide-react";
 
 const NAV = [
@@ -68,34 +68,40 @@ const EXPERIENCE = [
 
 const PROJECTS = [
   {
-    title: "AI Travel Planner",
-    tag: "AI · Travel",
-    icon: Plane,
-    desc: "Conversational itinerary builder that turns loose travel ideas into day-by-day plans with stays, transit and local picks.",
+    title: "Financial App North",
+    tag: "Finance · Web App",
+    icon: Banknote,
+    desc: "A comprehensive financial management application built to track expenses, visualize spending patterns, and manage budgets with intuitive dashboards.",
+    href: "https://github.com/nikhilsharmaawork/financial-app-north",
+    tags: ["React", "Node.js", "Data Viz"],
   },
   {
-    title: "Latvia Tourism Platform",
-    tag: "Web · Tourism",
-    icon: MapPin,
-    desc: "An information hub for visitors to Latvia — regions, seasons, food culture and off-the-map experiences.",
+    title: "GIG-COMPANION",
+    tag: "Companion · Help",
+    icon: Users,
+    desc: "A companion tool for gig workers and musicians to manage schedules, track earnings, and organize performance logistics in one place.",
+    href: "https://github.com/nikhilsharmaawork/GIG-COMPANION-",
+    tags: ["Full Stack", "Scheduling", "Mobile-first"],
   },
   {
     title: "Hospitality Operations Analytics",
     tag: "Data · F&B",
     icon: BarChart3,
     desc: "Lightweight dashboards for restaurants and small hotels: covers, sales mix, stock and labour at a glance.",
+    tags: ["Dashboards", "Analytics"],
   },
   {
     title: "AI Agent Experiments",
     tag: "AI · R&D",
     icon: Brain,
     desc: "Prototypes exploring autonomous agents for booking, concierge tasks and back-of-house automation.",
+    tags: ["LLMs", "Automation"],
   },
 ];
 
 const SKILLS = [
   { group: "Hospitality", items: ["Hospitality Operations", "Fine Dining", "Food & Beverage Service", "Bartending", "Guest Experience", "Inventory Management"] },
-  { group: "Technology", items: ["AI Tools", "Microsoft Office", "Basic Web Development"] },
+  { group: "Technology", items: ["React", "Node.js", "Data Visualization", "AI Tools", "Microsoft Office", "Basic Web Development"] },
 ];
 
 function useReveal() {
@@ -167,6 +173,14 @@ const Nav = () => {
             </a>
           ))}
         </nav>
+          <div className="hidden md:flex items-center gap-1 mr-1">
+            <a href="https://github.com/nikhilsharmaawork" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-gold transition-colors p-2" aria-label="GitHub">
+              <Github className="h-[18px] w-[18px]" />
+            </a>
+            <a href="https://www.linkedin.com/in/nikhilsharmahere" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-gold transition-colors p-2" aria-label="LinkedIn">
+              <Linkedin className="h-[18px] w-[18px]" />
+            </a>
+        </div>
         <div className="flex items-center gap-3">
           <Button asChild variant="outline" size="sm" className="hidden sm:inline-flex border-gold/40 text-gold hover:bg-gold hover:text-primary-foreground">
             <a href="/nikhil-sharma-cv.pdf" download>
@@ -207,6 +221,32 @@ const Nav = () => {
   );
 };
 
+const Typewriter = ({ texts, speed = 80, deleteSpeed = 40, pause = 2000 }: { texts: string[]; speed?: number; deleteSpeed?: number; pause?: number }) => {
+  const [display, setDisplay] = useState("");
+  const [idx, setIdx] = useState(0);
+  const [deleting, setDeleting] = useState(false);
+  useEffect(() => {
+    const current = texts[idx];
+    let timer: ReturnType<typeof setTimeout>;
+    if (!deleting) {
+      if (display.length < current.length) {
+        timer = setTimeout(() => setDisplay(current.slice(0, display.length + 1)), speed);
+      } else {
+        timer = setTimeout(() => setDeleting(true), pause);
+      }
+    } else {
+      if (display.length > 0) {
+        timer = setTimeout(() => setDisplay(display.slice(0, -1)), deleteSpeed);
+      } else {
+        setDeleting(false);
+        setIdx((i) => (i + 1) % texts.length);
+      }
+    }
+    return () => clearTimeout(timer);
+  }, [display, deleting, idx, texts, speed, deleteSpeed, pause]);
+  return <span>{display}<span className="animate-pulse text-gold">|</span></span>;
+};
+
 const Hero = () => (
   <section id="top" className="relative min-h-screen flex items-center pt-28 pb-20 overflow-hidden">
     <div className="absolute inset-0 -z-10">
@@ -221,13 +261,14 @@ const Hero = () => (
       <h1 className="font-display text-5xl sm:text-7xl lg:text-8xl font-medium leading-[0.95] animate-fade-up" style={{ animationDelay: "0.1s" }}>
         Nikhil <span className="italic gradient-gold-text">Sharma</span>
       </h1>
-      <p className="mt-8 text-lg sm:text-xl lg:text-2xl text-muted-foreground max-w-3xl leading-relaxed font-light animate-fade-up" style={{ animationDelay: "0.2s" }}>
-        Tourism &amp; Hospitality Student
-        <span className="text-gold/60 mx-2.5">·</span>
-        Hospitality Professional
-        <span className="text-gold/60 mx-2.5">·</span>
-        AI Builder
-      </p>
+      <div className="mt-8 animate-fade-up" style={{ animationDelay: "0.2s" }}>
+        <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground leading-relaxed font-light">
+          Tourism &amp; Hospitality Student
+        </p>
+        <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground leading-relaxed font-light mt-1">
+          <Typewriter texts={["Hospitality Professional", "AI Builder", "Full Stack Developer"]} />
+        </p>
+      </div>
       <div className="mt-6 flex items-center gap-2 text-sm text-muted-foreground animate-fade-up" style={{ animationDelay: "0.3s" }}>
         <MapPin className="h-4 w-4 text-gold" />
         Based in Rīga, Latvia · Available for internships, graduate roles & startup work
@@ -237,6 +278,12 @@ const Hero = () => (
           <a href="#contact">
             Get in touch
             <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          </a>
+        </Button>
+        <Button asChild size="lg" variant="outline" className="border-border text-muted-foreground hover:text-foreground hover:border-gold/40 rounded-none px-8 h-12">
+          <a href="#projects">
+            View Projects
+            <ArrowUpRight className="h-4 w-4" />
           </a>
         </Button>
         <Button asChild size="lg" variant="outline" className="border-gold/40 text-foreground hover:bg-gold/10 hover:text-gold rounded-none px-8 h-12">
@@ -357,13 +404,31 @@ const Projects = () => (
       <div className="reveal">
         <SectionLabel num="03">Selected Projects</SectionLabel>
       </div>
+      <div className="reveal mb-12">
+        <a
+          href="https://github.com/nikhilsharmaawork"
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex items-center gap-3 border border-border bg-card/40 px-6 py-3 rounded-full hover:border-gold/50 hover:text-gold transition-all group"
+        >
+          <Github className="h-5 w-5" />
+          <span className="font-mono text-xs uppercase tracking-widest">View all projects on GitHub</span>
+          <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+        </a>
+      </div>
       <div className="grid sm:grid-cols-2 gap-5">
         {PROJECTS.map((p, i) => {
           const Icon = p.icon;
+          const Wrapper = p.href ? "a" : "article";
           return (
-            <article
+            <Wrapper
               key={p.title}
-              className="reveal group relative border border-border bg-card/40 p-8 lg:p-10 hover:border-gold/50 transition-all duration-500 hover:-translate-y-1 overflow-hidden"
+              {...(p.href ? { href: p.href, target: "_blank", rel: "noreferrer" } : {})}
+              className={`reveal group relative border border-border bg-card/40 p-8 lg:p-10 transition-all duration-500 hover:-translate-y-1 overflow-hidden ${
+                p.href
+                  ? "hover:border-gold/50 cursor-pointer"
+                  : "border-border"
+              }`}
               style={{ transitionDelay: `${i * 0.08}s` }}
             >
               <div className="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-gold/[0.04] blur-2xl group-hover:bg-gold/10 transition-colors duration-700" />
@@ -372,14 +437,24 @@ const Projects = () => (
                   <Icon className="h-8 w-8 text-gold" strokeWidth={1.3} />
                   <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">{p.tag}</span>
                 </div>
-                <h3 className="font-display text-2xl lg:text-3xl mb-3 group-hover:text-gold transition-colors">{p.title}</h3>
-                <p className="text-muted-foreground text-sm lg:text-base leading-relaxed">{p.desc}</p>
-                <div className="mt-6 flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-gold/70">
-                  <span>Case study soon</span>
-                  <Sparkles className="h-3 w-3" />
+                <div className="flex items-start justify-between gap-4">
+                  <h3 className="font-display text-2xl lg:text-3xl mb-3 group-hover:text-gold transition-colors">{p.title}</h3>
+                  {p.href && (
+                    <ArrowUpRight className="h-5 w-5 text-muted-foreground group-hover:text-gold shrink-0 mt-1 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  )}
                 </div>
+                <p className="text-muted-foreground text-sm lg:text-base leading-relaxed">{p.desc}</p>
+                {"tags" in p && p.tags && (
+                  <div className="mt-6 flex flex-wrap gap-2">
+                    {p.tags.map((t) => (
+                      <span key={t} className="px-3 py-1 border border-border/80 text-xs font-mono text-muted-foreground rounded-full">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
-            </article>
+            </Wrapper>
           );
         })}
       </div>
@@ -500,8 +575,16 @@ const Footer = () => (
           Nikhil Sharma · Rīga, Latvia · © {new Date().getFullYear()}
         </div>
       </div>
-      <div className="font-mono text-xs text-muted-foreground">
-        Designed &amp; built with care.
+      <div className="flex items-center gap-4">
+        <a href="mailto:nikhilsharmawork1@gmail.com" className="text-muted-foreground hover:text-gold transition-colors" aria-label="Email">
+          <Mail className="h-4 w-4" />
+        </a>
+        <a href="https://github.com/nikhilsharmaawork" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-gold transition-colors" aria-label="GitHub">
+          <Github className="h-4 w-4" />
+        </a>
+        <a href="https://www.linkedin.com/in/nikhil-sharma1424" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-gold transition-colors" aria-label="LinkedIn">
+          <Linkedin className="h-4 w-4" />
+        </a>
       </div>
     </div>
   </footer>
