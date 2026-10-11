@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
+  Bike,
+  Bot,
   Cloud,
   Code2,
   Compass,
@@ -18,6 +20,7 @@ import {
   Sparkles,
   Sun,
   Utensils,
+  Wallet,
   Workflow,
   X,
 } from "lucide-react";
@@ -26,70 +29,102 @@ import ProjectPreview, { type PreviewKind } from "@/components/ProjectPreview";
 type Theme = "dark" | "light";
 
 const NAV = [
+  { href: "#projects", label: "Projects" },
   { href: "#about", label: "About" },
   { href: "#experience", label: "Experience" },
-  { href: "#projects", label: "Projects" },
   { href: "#stack", label: "Toolkit" },
   { href: "#contact", label: "Contact" },
 ];
 
-const PROJECTS: Array<{
+type PortfolioProject = {
+  id: PreviewKind;
   name: string;
+  tabLabel: string;
   category: string;
   description: string;
   status: string;
   statusTone: "live" | "building" | "personal";
   stack: string[];
   preview: PreviewKind;
+  contribution: string;
+  highlights: string[];
   liveUrl?: string;
   sourceUrl?: string;
   liveLabel?: string;
-}> = [
+  availabilityNote: string;
+};
+
+const PROJECTS: PortfolioProject[] = [
   {
-    name: "North",
-    category: "Personal finance · Dashboard",
+    id: "hermes",
+    name: "Hermes",
+    tabLabel: "AI agent",
+    category: "Telegram agent · Cloud automation",
     description:
-      "A personal finance dashboard for keeping budgets, spending patterns, and day-to-day money in one clear view.",
-    status: "Live",
+      "A personal assistant that brings practical AI workflows into Telegram and connects them to the tools I use to build.",
+    status: "Personal system",
+    statusTone: "personal",
+    stack: ["Python", "AWS EC2 · Ubuntu", "Telegram", "LLM fallback", "GitHub"],
+    preview: "hermes",
+    contribution:
+      "Connected a Telegram interface to a cloud-hosted agent, added model-provider fallback, and wired in GitHub-assisted code review and automation.",
+    highlights: [
+      "Telegram as the everyday interface",
+      "Fallback across model providers",
+      "Cloud deployment on AWS EC2 / Ubuntu",
+      "GitHub-assisted code review and workflows",
+    ],
+    availabilityNote: "Personal system; a public demo and source repository have not been shared.",
+  },
+  {
+    id: "north",
+    name: "North",
+    tabLabel: "Finance",
+    category: "Personal finance · Newcomer-focused",
+    description:
+      "A newcomer-focused finance workspace for bringing balances, income, budgets, and upcoming money events into one useful view.",
+    status: "Published · sign-in required",
     statusTone: "live",
-    stack: ["Next.js", "TypeScript", "Supabase"],
+    stack: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS", "Vercel"],
     preview: "north",
     liveUrl: "https://financial-app-north-alpha.vercel.app/",
     sourceUrl: "https://github.com/nikhilsharmaawork/financial-app-north",
-    liveLabel: "Open North",
+    liveLabel: "Open app · sign-in",
+    contribution:
+      "Built the finance overview around balance, monthly income, reserved funds, a daily safe-to-spend estimate, upcoming events, and practical money-management views.",
+    highlights: [
+      "Balance, income, and reserved funds",
+      "Daily safe-to-spend estimate and financial health",
+      "Accounts, budgets, income sources, and upcoming events",
+      "Six-month expense overview",
+    ],
+    availabilityNote:
+      "The public app opens to sign-in. The image shown is North’s authentic onboarding screen; the dashboard itself is not publicly visible.",
   },
   {
+    id: "gig",
     name: "Gig Companion",
-    category: "Courier tools · Income tracking",
+    tabLabel: "Courier tools",
+    category: "Courier income · Work expenses",
     description:
-      "A mobile-first companion for Bolt and Wolt couriers, shaped around shift income, expenses, and a clearer view of work over time.",
-    status: "In development",
+      "A mobile-first finance companion for couriers to record shifts, track work costs, and make take-home earnings easier to understand.",
+    status: "Early build",
     statusTone: "building",
-    stack: ["Next.js", "TypeScript", "Supabase"],
+    stack: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS", "Vercel"],
     preview: "gig",
     liveUrl: "https://gig-companion.vercel.app/",
     sourceUrl: "https://github.com/nikhilsharmaawork/GIG-COMPANION-",
-    liveLabel: "Open project site",
-  },
-  {
-    name: "Hermes Agent",
-    category: "Personal AI · Automation",
-    description:
-      "A personal agent running on AWS EC2 Ubuntu, with a Telegram interface, model-provider fallback, GitHub integration, and automation capabilities.",
-    status: "Personal system",
-    statusTone: "personal",
-    stack: ["Python", "AWS EC2", "Telegram", "LLM integrations"],
-    preview: "hermes",
-  },
-  {
-    name: "AI Crypto Trading Arena",
-    category: "Multi-agent systems · Research",
-    description:
-      "An in-progress multi-agent trading platform. The project is still being built; no performance or profitability claims are implied.",
-    status: "In progress",
-    statusTone: "building",
-    stack: ["AI agents", "Automation"],
-    preview: "arena",
+    liveLabel: "Open app · sign-in",
+    contribution:
+      "Shaped the daily loop: record Bolt, Wolt, or other shift earnings and hours; log work expenses with optional receipt photos; then review daily totals and history.",
+    highlights: [
+      "Shift income across Bolt, Wolt, and other work",
+      "Work expenses with optional receipt photos",
+      "Daily income, expenses, profit, and a monthly-goal view",
+      "A workflow designed for quick mobile use",
+    ],
+    availabilityNote:
+      "In development. The live site currently returns to sign-in; its guest-demo path does not open the dashboard yet.",
   },
 ];
 
@@ -292,7 +327,7 @@ function Header({ theme, onToggleTheme }: { theme: Theme; onToggleTheme: () => v
 
 function HeroArtwork() {
   return (
-    <div className="hero-art" aria-label="A visual map of hospitality, software, and automation" role="img">
+    <div className="hero-art" aria-label="A visual map from real workflows to practical software" role="img">
       <div className="art-orbit art-orbit-one" />
       <div className="art-orbit art-orbit-two" />
       <div className="art-glass-panel art-panel-main">
@@ -300,7 +335,7 @@ function HeroArtwork() {
           <span className="art-overline">FIELD NOTES / 01</span>
           <span className="art-live-dot"><i /> SYSTEMS THINKING</span>
         </div>
-        <div className="art-title">From the floor<br />to the interface.</div>
+        <div className="art-title">From real work<br />to useful software.</div>
         <div className="art-flow">
           <div className="art-node">
             <span className="art-node-icon"><Utensils size={16} /></span>
@@ -309,13 +344,13 @@ function HeroArtwork() {
           <span className="art-connector"><i /><i /><i /></span>
           <div className="art-node art-node-accent">
             <span className="art-node-icon"><Network size={16} /></span>
-            <span>Useful<br /><b>technology</b></span>
+            <span>Practical<br /><b>software</b></span>
           </div>
         </div>
         <div className="art-divider" />
         <div className="art-bottom-row">
           <span><span className="art-mini-dot blue" /> Software</span>
-          <span><span className="art-mini-dot violet" /> AI & automation</span>
+          <span><span className="art-mini-dot violet" /> AI agents</span>
           <span className="art-index">RIGA · LV</span>
         </div>
       </div>
@@ -329,7 +364,7 @@ function HeroArtwork() {
         <span><b>Hermes</b><small>Agent · automation</small></span>
         <span className="chip-arrow"><ArrowUpRight size={13} /></span>
       </div>
-      <div className="art-caption"><span>01 — 04</span><span>A practical builder’s toolkit</span></div>
+      <div className="art-caption"><span>01 — 03</span><span>Three products · real workflows</span></div>
     </div>
   );
 }
@@ -343,12 +378,12 @@ function Hero() {
         <div className="hero-copy">
           <p className="eyebrow hero-eyebrow"><span className="eyebrow-dot" /> Nikhil Sharma <span className="eyebrow-divider">/</span> Rīga, Latvia</p>
           <h1 id="hero-title">
-            Building at the<br />
-            intersection of<br />
-            <em>hospitality</em> &amp; intelligent technology.
+            I build practical<br />
+            <em>AI agents</em> &amp;<br />
+            software products.
           </h1>
           <p className="hero-lede">
-            I work across hospitality operations, software development, AI agents, and automation—turning practical experience into useful technology.
+            From cloud-hosted assistants to finance and courier tools, I turn real workflows into useful software—grounded in hands-on hospitality experience.
           </p>
           <div className="hero-actions">
             <a className="button button-primary" href="#projects">
@@ -372,7 +407,7 @@ function Hero() {
       </div>
       <div className="hero-foot page-container">
         <span><MapPin size={14} aria-hidden="true" /> Riga, Latvia</span>
-        <a href="#about">Scroll to explore <ArrowRight size={13} aria-hidden="true" /></a>
+          <a href="#projects">Explore selected work <ArrowRight size={13} aria-hidden="true" /></a>
       </div>
     </section>
   );
@@ -383,7 +418,7 @@ function About() {
     <section className="section section-about" id="about">
       <div className="page-container">
         <SectionHeading
-          number="01"
+          number="02"
           eyebrow="About"
           title="Grounded in service. Curious about systems."
           text="A perspective shaped by both the pace of hospitality and the possibility of software."
@@ -418,7 +453,7 @@ function Experience() {
     <section className="section section-experience" id="experience">
       <div className="page-container">
         <SectionHeading
-          number="02"
+          number="03"
           eyebrow="Experience"
           title="Learned on the floor."
           text="Hospitality experience across Latvia, Greece, and the next chapter in Colorado."
@@ -446,52 +481,120 @@ function Experience() {
 }
 
 function Projects() {
+  const [selectedId, setSelectedId] = useState<PreviewKind>("hermes");
+  const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const selectedIndex = Math.max(0, PROJECTS.findIndex((project) => project.id === selectedId));
+  const project = PROJECTS[selectedIndex];
+
+  function selectProject(index: number, moveFocus = false) {
+    const nextProject = PROJECTS[index];
+    if (!nextProject) return;
+    setSelectedId(nextProject.id);
+    if (moveFocus) tabRefs.current[index]?.focus();
+  }
+
+  function handleTabKeyDown(event: KeyboardEvent<HTMLButtonElement>, index: number) {
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      selectProject((index + 1) % PROJECTS.length, true);
+    } else if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      selectProject((index - 1 + PROJECTS.length) % PROJECTS.length, true);
+    } else if (event.key === "Home") {
+      event.preventDefault();
+      selectProject(0, true);
+    } else if (event.key === "End") {
+      event.preventDefault();
+      selectProject(PROJECTS.length - 1, true);
+    }
+  }
+
   return (
     <section className="section section-projects" id="projects">
       <div className="page-container">
         <SectionHeading
-          number="03"
+          number="01"
           eyebrow="Selected projects"
-          title="Ideas made tangible."
-          text="A mix of shipped products, personal infrastructure, and work still taking shape. Previews are illustrative interface studies, not product screenshots."
+          title="Three practical products."
+          text="From cloud-connected agents to newcomer finance and courier workflows, each project starts with a real problem."
         />
-        <div className="projects-grid">
-          {PROJECTS.map((project, index) => (
-            <article className={`project-card project-card-${project.preview}`} key={project.name} data-reveal style={{ transitionDelay: `${index * 70}ms` }}>
-              <div className="project-preview-wrap">
-                <ProjectPreview kind={project.preview} />
-                <span className="preview-caption">Illustrative interface study</span>
-              </div>
-              <div className="project-content">
-                <div className="project-meta-row">
-                  <span className={`status-pill status-${project.statusTone}`}>{project.status}</span>
-                  <span className="project-category">{project.category}</span>
-                </div>
-                <h3>{project.name}</h3>
-                <p className="project-description">{project.description}</p>
-                <div className="project-tags" aria-label={`${project.name} technologies`}>
-                  {project.stack.map((tag) => <span key={tag}>{tag}</span>)}
-                </div>
-                {(project.liveUrl || project.sourceUrl) ? (
-                  <div className="project-links">
-                    {project.liveUrl && (
-                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" aria-label={`${project.liveLabel} (opens in a new tab)`}>
-                        {project.liveLabel} <ExternalLink size={14} aria-hidden="true" />
-                      </a>
-                    )}
-                    {project.sourceUrl && (
-                      <a href={project.sourceUrl} target="_blank" rel="noopener noreferrer" aria-label={`View ${project.name} source on GitHub (opens in a new tab)`}>
-                        Source <Github size={14} aria-hidden="true" />
-                      </a>
-                    )}
-                  </div>
-                ) : (
-                  <p className="project-link-note">No public demo or source link available.</p>
-                )}
-              </div>
-            </article>
-          ))}
+        <div className="project-tabs" role="tablist" aria-label="Featured projects">
+          <span
+            className="project-tab-indicator"
+            aria-hidden="true"
+            style={{ transform: selectedIndex === 0 ? "translateX(0)" : selectedIndex === 1 ? "translateX(calc(100% + var(--project-tab-gap)))" : "translateX(calc(200% + var(--project-tab-gap) + var(--project-tab-gap)))" }}
+          />
+          {PROJECTS.map((item, index) => {
+            const Icon = item.id === "hermes" ? Bot : item.id === "north" ? Wallet : Bike;
+            const selected = item.id === project.id;
+            return (
+              <button
+                className="project-tab"
+                id={`project-tab-${item.id}`}
+                type="button"
+                role="tab"
+                aria-selected={selected}
+                aria-label={`${item.name} ${item.tabLabel}`}
+                aria-controls={`project-panel-${item.id}`}
+                tabIndex={selected ? 0 : -1}
+                key={item.id}
+                ref={(element) => { tabRefs.current[index] = element; }}
+                onClick={() => selectProject(index)}
+                onKeyDown={(event) => handleTabKeyDown(event, index)}
+              >
+                <span className="project-tab-icon"><Icon size={17} aria-hidden="true" /></span>
+                <span className="project-tab-text">
+                  <b><span className="project-tab-name-full">{item.name}</span><span className="project-tab-name-short">{item.id === "gig" ? "Gig" : item.name}</span></b>
+                  <small>{item.tabLabel}</small>
+                </span>
+              </button>
+            );
+          })}
         </div>
+        <article
+          className={`project-panel project-panel-${project.id}`}
+          id={`project-panel-${project.id}`}
+          role="tabpanel"
+          aria-labelledby={`project-tab-${project.id}`}
+          tabIndex={0}
+          key={project.id}
+        >
+          <div className="project-panel-visual">
+            <ProjectPreview kind={project.preview} />
+          </div>
+          <div className="project-panel-content">
+            <div className="project-meta-row">
+              <span className={`status-pill status-${project.statusTone}`}>{project.status}</span>
+              <span className="project-category">{project.category}</span>
+            </div>
+            <h3>{project.name}</h3>
+            <p className="project-description">{project.description}</p>
+            <div className="project-contribution">
+              <span className="project-overline">MY CONTRIBUTION</span>
+              <p>{project.contribution}</p>
+            </div>
+            <ul className="project-highlights" aria-label={`${project.name} capabilities`}>
+              {project.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
+            </ul>
+            <div className="project-tags" aria-label={`${project.name} technologies`}>
+              {project.stack.map((tag) => <span key={tag}>{tag}</span>)}
+            </div>
+            <div className="project-links">
+              {project.liveUrl && (
+                <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" aria-label={`${project.liveLabel} (opens in a new tab)`}>
+                  {project.liveLabel} <ExternalLink size={14} aria-hidden="true" />
+                </a>
+              )}
+              {project.sourceUrl && (
+                <a href={project.sourceUrl} target="_blank" rel="noopener noreferrer" aria-label={`View ${project.name} source on GitHub (opens in a new tab)`}>
+                  Source <Github size={14} aria-hidden="true" />
+                </a>
+              )}
+            </div>
+            <p className="project-availability-note">{project.availabilityNote}</p>
+          </div>
+        </article>
+        <p className="project-tab-hint"><span aria-hidden="true">↔</span> Use the tabs to explore each project</p>
       </div>
     </section>
   );
@@ -563,7 +666,7 @@ function Footer() {
     <footer className="site-footer">
       <div className="page-container footer-inner">
         <a className="footer-brand" href="#top" aria-label="Nikhil Sharma, back to top"><Mark small /><span>Nikhil Sharma</span></a>
-        <span className="footer-note">Hospitality × technology <span>·</span> Rīga, Latvia</span>
+        <span className="footer-note">AI agents × practical software <span>·</span> Rīga, Latvia</span>
         <a className="back-top" href="#top">Back to top <ArrowUpRight size={14} aria-hidden="true" /></a>
         <span className="footer-copyright">© {new Date().getFullYear()}</span>
       </div>
@@ -590,9 +693,9 @@ export default function Index() {
       <Header theme={theme} onToggleTheme={() => setTheme((current) => current === "dark" ? "light" : "dark")} />
       <main id="main-content">
         <Hero />
+        <Projects />
         <About />
         <Experience />
-        <Projects />
         <Toolkit />
         <Contact />
       </main>
