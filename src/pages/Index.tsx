@@ -1,610 +1,602 @@
-import { useEffect, useRef, useState } from "react";
-import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
 import {
+  ArrowRight,
   ArrowUpRight,
-  Download,
+  Cloud,
+  Code2,
+  Compass,
+  Database,
+  ExternalLink,
+  Github,
+  GraduationCap,
+  Linkedin,
   Mail,
   MapPin,
-  Github,
-  Linkedin,
-  ChefHat,
-  Wine,
-  Hotel,
-  GraduationCap,
-  Code2,
-  Brain,
-  BarChart3,
-  Banknote,
-  Users,
+  Menu,
+  Moon,
+  Network,
+  Sparkles,
+  Sun,
+  Utensils,
+  Workflow,
+  X,
 } from "lucide-react";
+import ProjectPreview, { type PreviewKind } from "@/components/ProjectPreview";
+
+type Theme = "dark" | "light";
 
 const NAV = [
-  { id: "about", label: "About" },
-  { id: "experience", label: "Experience" },
-  { id: "projects", label: "Projects" },
-  { id: "skills", label: "Skills" },
-  { id: "education", label: "Education" },
-  { id: "contact", label: "Contact" },
+  { href: "#about", label: "About" },
+  { href: "#experience", label: "Experience" },
+  { href: "#projects", label: "Projects" },
+  { href: "#stack", label: "Toolkit" },
+  { href: "#contact", label: "Contact" },
+];
+
+const PROJECTS: Array<{
+  name: string;
+  category: string;
+  description: string;
+  status: string;
+  statusTone: "live" | "building" | "personal";
+  stack: string[];
+  preview: PreviewKind;
+  liveUrl?: string;
+  sourceUrl?: string;
+  liveLabel?: string;
+}> = [
+  {
+    name: "North",
+    category: "Personal finance · Dashboard",
+    description:
+      "A personal finance dashboard for keeping budgets, spending patterns, and day-to-day money in one clear view.",
+    status: "Live",
+    statusTone: "live",
+    stack: ["Next.js", "TypeScript", "Supabase"],
+    preview: "north",
+    liveUrl: "https://financial-app-north-alpha.vercel.app/",
+    sourceUrl: "https://github.com/nikhilsharmaawork/financial-app-north",
+    liveLabel: "Open North",
+  },
+  {
+    name: "Gig Companion",
+    category: "Courier tools · Income tracking",
+    description:
+      "A mobile-first companion for Bolt and Wolt couriers, shaped around shift income, expenses, and a clearer view of work over time.",
+    status: "In development",
+    statusTone: "building",
+    stack: ["Next.js", "TypeScript", "Supabase"],
+    preview: "gig",
+    liveUrl: "https://gig-companion.vercel.app/",
+    sourceUrl: "https://github.com/nikhilsharmaawork/GIG-COMPANION-",
+    liveLabel: "Open project site",
+  },
+  {
+    name: "Hermes Agent",
+    category: "Personal AI · Automation",
+    description:
+      "A personal agent running on AWS EC2 Ubuntu, with a Telegram interface, model-provider fallback, GitHub integration, and automation capabilities.",
+    status: "Personal system",
+    statusTone: "personal",
+    stack: ["Python", "AWS EC2", "Telegram", "LLM integrations"],
+    preview: "hermes",
+  },
+  {
+    name: "AI Crypto Trading Arena",
+    category: "Multi-agent systems · Research",
+    description:
+      "An in-progress multi-agent trading platform. The project is still being built; no performance or profitability claims are implied.",
+    status: "In progress",
+    statusTone: "building",
+    stack: ["AI agents", "Automation"],
+    preview: "arena",
+  },
 ];
 
 const EXPERIENCE = [
   {
-    role: "Commis I / Kitchen Assistant",
-    org: "Pavāru Māja",
-    meta: "Michelin Green Star · Līgatne, Latvia",
-    period: "Current",
-    icon: ChefHat,
-    bullets: [
-      "Cooking and plating in a fine-dining kitchen recognised for sustainability.",
-      "Mise en place, station management, and supporting service for tasting menus.",
-      "Working with local, seasonal Latvian produce and zero-waste techniques.",
-    ],
+    role: "Culinary trainee · J-1 program",
+    organization: "The Broadmoor",
+    location: "Colorado Springs, USA",
+    period: "Starting November 2026",
+    status: "Upcoming",
+    detail: "A planned culinary training program. This experience has not started yet.",
   },
   {
-    role: "Food & Beverage Intern",
-    org: "TUI Blue Hotel",
-    meta: "Greece",
-    period: "Seasonal",
-    icon: Hotel,
-    bullets: [
-      "International resort service across restaurants, bars and events.",
-      "Guest-facing hospitality in a high-volume, multicultural environment.",
-      "Cross-trained across F&B outlets, banquets and pool service.",
-    ],
+    role: "Commis I / Kitchen Assistant",
+    organization: "Pavāru Māja",
+    location: "Līgatne, Latvia",
+    period: "July 2024 — Present",
+    status: "Current",
+    detail: "Fine-dining kitchen work, from preparation and station support to service.",
+  },
+  {
+    role: "Food & Beverage intern",
+    organization: "TUI Blue Hotel",
+    location: "Greece",
+    period: "Seasonal · Previous",
+    status: "Past",
+    detail: "International hotel and resort experience across food and beverage service.",
   },
   {
     role: "Bartender",
-    org: "Gastro Pub Duvel's",
-    meta: "Rīga, Latvia",
+    organization: "Gastro Pub Duvel’s",
+    location: "Rīga, Latvia",
     period: "Previous",
-    icon: Wine,
-    bullets: [
-      "Crafting classic cocktails and curating a Belgian-led beer programme.",
-      "Owned bar inventory, stock control and supplier coordination.",
-      "Built regulars through attentive, knowledgeable guest experience.",
-    ],
+    status: "Past",
+    detail: "Guest-facing bar work in a Riga gastro pub.",
   },
 ];
 
-const PROJECTS = [
+const TOOLKIT = [
   {
-    title: "Financial App North",
-    tag: "Finance · Web App",
-    icon: Banknote,
-    desc: "A comprehensive financial management application built to track expenses, visualize spending patterns, and manage budgets with intuitive dashboards.",
-    href: "https://github.com/nikhilsharmaawork/financial-app-north",
-    tags: ["React", "Node.js", "Data Viz"],
+    title: "Software development",
+    icon: Code2,
+    items: ["Next.js", "React", "TypeScript", "Python"],
   },
   {
-    title: "GIG-COMPANION",
-    tag: "Companion · Help",
-    icon: Users,
-    desc: "A companion tool for gig workers and musicians to manage schedules, track earnings, and organize performance logistics in one place.",
-    href: "https://github.com/nikhilsharmaawork/GIG-COMPANION-",
-    tags: ["Full Stack", "Scheduling", "Mobile-first"],
+    title: "Backend & data",
+    icon: Database,
+    items: ["Supabase"],
   },
   {
-    title: "Hospitality Operations Analytics",
-    tag: "Data · F&B",
-    icon: BarChart3,
-    desc: "Lightweight dashboards for restaurants and small hotels: covers, sales mix, stock and labour at a glance.",
-    tags: ["Dashboards", "Analytics"],
+    title: "AI & automation",
+    icon: Workflow,
+    items: ["Hermes Agent", "LLM integrations", "Telegram bots", "AI agents", "Automation"],
   },
   {
-    title: "AI Agent Experiments",
-    tag: "AI · R&D",
-    icon: Brain,
-    desc: "Prototypes exploring autonomous agents for booking, concierge tasks and back-of-house automation.",
-    tags: ["LLMs", "Automation"],
+    title: "Cloud & DevOps",
+    icon: Cloud,
+    items: ["AWS EC2", "Linux", "GitHub", "Vercel"],
+  },
+  {
+    title: "Hospitality",
+    icon: Utensils,
+    items: ["Kitchen operations", "Food & beverage", "International hospitality"],
   },
 ];
 
-const SKILLS = [
-  { group: "Hospitality", items: ["Hospitality Operations", "Fine Dining", "Food & Beverage Service", "Bartending", "Guest Experience", "Inventory Management"] },
-  { group: "Technology", items: ["React", "Node.js", "Data Visualization", "AI Tools", "Microsoft Office", "Basic Web Development"] },
-];
+function readSavedTheme(): Theme {
+  try {
+    return window.localStorage.getItem("portfolio-theme") === "light" ? "light" : "dark";
+  } catch {
+    return "dark";
+  }
+}
 
 function useReveal() {
   useEffect(() => {
-    const els = document.querySelectorAll<HTMLElement>(".reveal");
-    const io = new IntersectionObserver(
+    const elements = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
+    const reduceMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+
+    if (reduceMotion || typeof IntersectionObserver === "undefined") {
+      elements.forEach((element) => element.classList.add("is-visible"));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add("in");
-            io.unobserve(e.target);
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.12 },
+      { threshold: 0.12, rootMargin: "0px 0px -5% 0px" },
     );
-    els.forEach((el) => io.observe(el));
-    return () => io.disconnect();
+
+    elements.forEach((element) => observer.observe(element));
+    return () => observer.disconnect();
   }, []);
 }
 
-const SectionLabel = ({ num, children }: { num: string; children: React.ReactNode }) => (
-  <div className="flex items-center gap-4 mb-10">
-    <span className="font-mono text-xs text-gold tracking-widest">{num}</span>
-    <span className="h-px w-12 bg-gold/50" />
-    <h2 className="text-sm font-mono uppercase tracking-[0.25em] text-muted-foreground">{children}</h2>
-  </div>
-);
-
-const Monogram = ({ size = "default" }: { size?: "default" | "lg" }) => (
-  <div
-    className={`inline-flex items-center justify-center border border-gold/60 font-display font-medium text-gold ${
-      size === "lg" ? "h-16 w-16 text-3xl" : "h-10 w-10 text-base"
-    }`}
-    aria-label="NS monogram"
-  >
-    NS
-  </div>
-);
-
-const Nav = () => {
-  const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
-  useEffect(() => {
-    const on = () => setScrolled(window.scrollY > 24);
-    window.addEventListener("scroll", on);
-    return () => window.removeEventListener("scroll", on);
-  }, []);
+function SectionHeading({
+  number,
+  eyebrow,
+  title,
+  text,
+}: {
+  number: string;
+  eyebrow: string;
+  title: string;
+  text?: string;
+}) {
   return (
-    <header
-      className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
-        scrolled ? "bg-background/80 backdrop-blur-lg border-b border-border/60" : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-6xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
-        <a href="#top" className="flex items-center gap-3">
-          <Monogram />
-          <span className="hidden sm:block font-display text-lg">Nikhil Sharma</span>
+    <div className="section-heading" data-reveal>
+      <div className="section-kicker">
+        <span>{number}</span>
+        <span className="section-rule" aria-hidden="true" />
+        <span>{eyebrow}</span>
+      </div>
+      <h2>{title}</h2>
+      {text && <p>{text}</p>}
+    </div>
+  );
+}
+
+function Mark({ small = false }: { small?: boolean }) {
+  return (
+    <span className={`brand-mark${small ? " brand-mark-small" : ""}`} aria-hidden="true">
+      <span>N</span>
+      <i />
+    </span>
+  );
+}
+
+function Header({ theme, onToggleTheme }: { theme: Theme; onToggleTheme: () => void }) {
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const update = () => setScrolled(window.scrollY > 16);
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    return () => window.removeEventListener("scroll", update);
+  }, []);
+
+  return (
+    <header className={`site-header${scrolled ? " is-scrolled" : ""}`}>
+      <div className="page-container header-inner">
+        <a className="brand" href="#top" aria-label="Nikhil Sharma, back to top">
+          <Mark />
+          <span>Nikhil Sharma</span>
         </a>
-        <nav className="hidden md:flex items-center gap-8">
-          {NAV.map((n, i) => (
-            <a
-              key={n.id}
-              href={`#${n.id}`}
-              className="group text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <span className="font-mono text-xs text-gold/70 mr-1.5">0{i + 1}.</span>
-              {n.label}
+
+        <nav className="primary-nav" aria-label="Primary navigation">
+          {NAV.map((item) => (
+            <a href={item.href} key={item.href} onClick={() => setMenuOpen(false)}>
+              {item.label}
             </a>
           ))}
         </nav>
-          <div className="hidden md:flex items-center gap-1 mr-1">
-            <a href="https://github.com/nikhilsharmaawork" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-gold transition-colors p-2" aria-label="GitHub">
-              <Github className="h-[18px] w-[18px]" />
-            </a>
-            <a href="https://www.linkedin.com/in/nikhilsharmahere" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-gold transition-colors p-2" aria-label="LinkedIn">
-              <Linkedin className="h-[18px] w-[18px]" />
-            </a>
-        </div>
-        <div className="flex items-center gap-3">
-          <Button asChild variant="outline" size="sm" className="hidden sm:inline-flex border-gold/40 text-gold hover:bg-gold hover:text-primary-foreground">
-            <a href="/nikhil-sharma-cv.pdf" download>
-              <Download className="h-4 w-4" /> CV
-            </a>
-          </Button>
+
+        <div className="header-actions">
+          <a className="header-contact" href="#contact">
+            Let’s talk <ArrowUpRight size={15} aria-hidden="true" />
+          </a>
           <button
-            className="md:hidden text-foreground"
-            onClick={() => setOpen((v) => !v)}
-            aria-label="Toggle menu"
+            className="icon-button theme-toggle"
+            type="button"
+            onClick={onToggleTheme}
+            aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
+            title={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
           >
-            <div className="flex flex-col gap-1.5">
-              <span className={`h-px w-6 bg-foreground transition-transform ${open ? "translate-y-[6px] rotate-45" : ""}`} />
-              <span className={`h-px w-6 bg-foreground transition-opacity ${open ? "opacity-0" : ""}`} />
-              <span className={`h-px w-6 bg-foreground transition-transform ${open ? "-translate-y-[6px] -rotate-45" : ""}`} />
-            </div>
+            {theme === "dark" ? <Sun size={17} /> : <Moon size={17} />}
+          </button>
+          <button
+            className="icon-button menu-toggle"
+            type="button"
+            onClick={() => setMenuOpen((open) => !open)}
+            aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-navigation"
+          >
+            {menuOpen ? <X size={19} /> : <Menu size={19} />}
           </button>
         </div>
       </div>
-      {open && (
-        <div className="md:hidden border-t border-border/60 bg-background/95 backdrop-blur-lg">
-          <nav className="max-w-6xl mx-auto px-6 py-6 flex flex-col gap-4">
-            {NAV.map((n, i) => (
-              <a
-                key={n.id}
-                href={`#${n.id}`}
-                onClick={() => setOpen(false)}
-                className="text-base text-muted-foreground hover:text-foreground"
-              >
-                <span className="font-mono text-xs text-gold/70 mr-2">0{i + 1}.</span>
-                {n.label}
-              </a>
-            ))}
-          </nav>
-        </div>
+
+      {menuOpen && (
+        <nav className="mobile-nav" id="mobile-navigation" aria-label="Mobile navigation">
+          {NAV.map((item) => (
+            <a href={item.href} key={item.href} onClick={() => setMenuOpen(false)}>
+              {item.label} <ArrowUpRight size={15} aria-hidden="true" />
+            </a>
+          ))}
+        </nav>
       )}
     </header>
   );
-};
+}
 
-const Typewriter = ({ texts, speed = 80, deleteSpeed = 40, pause = 2000 }: { texts: string[]; speed?: number; deleteSpeed?: number; pause?: number }) => {
-  const [display, setDisplay] = useState("");
-  const [idx, setIdx] = useState(0);
-  const [deleting, setDeleting] = useState(false);
-  useEffect(() => {
-    const current = texts[idx];
-    let timer: ReturnType<typeof setTimeout>;
-    if (!deleting) {
-      if (display.length < current.length) {
-        timer = setTimeout(() => setDisplay(current.slice(0, display.length + 1)), speed);
-      } else {
-        timer = setTimeout(() => setDeleting(true), pause);
-      }
-    } else {
-      if (display.length > 0) {
-        timer = setTimeout(() => setDisplay(display.slice(0, -1)), deleteSpeed);
-      } else {
-        setDeleting(false);
-        setIdx((i) => (i + 1) % texts.length);
-      }
-    }
-    return () => clearTimeout(timer);
-  }, [display, deleting, idx, texts, speed, deleteSpeed, pause]);
-  return <span>{display}<span className="animate-pulse text-gold">|</span></span>;
-};
-
-const Hero = () => (
-  <section id="top" className="relative min-h-screen flex items-center pt-28 pb-20 overflow-hidden">
-    <div className="absolute inset-0 -z-10">
-      <div className="absolute top-1/4 -left-32 w-[500px] h-[500px] rounded-full bg-gold/5 blur-3xl" />
-      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] rounded-full bg-gold/[0.03] blur-3xl" />
-    </div>
-    <div className="max-w-6xl mx-auto px-6 lg:px-10 w-full">
-      <div className="flex items-center gap-3 mb-8 animate-fade-up">
-        <span className="h-px w-10 bg-gold" />
-        <span className="font-mono text-xs uppercase tracking-[0.3em] text-gold">Hello — I'm</span>
-      </div>
-      <h1 className="font-display text-5xl sm:text-7xl lg:text-8xl font-medium leading-[0.95] animate-fade-up" style={{ animationDelay: "0.1s" }}>
-        Nikhil <span className="italic gradient-gold-text">Sharma</span>
-      </h1>
-      <div className="mt-8 animate-fade-up" style={{ animationDelay: "0.2s" }}>
-        <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground leading-relaxed font-light">
-          Tourism &amp; Hospitality Student
-        </p>
-        <p className="text-lg sm:text-xl lg:text-2xl text-muted-foreground leading-relaxed font-light mt-1">
-          <Typewriter texts={["Hospitality Professional", "AI Builder", "Full Stack Developer"]} />
-        </p>
-      </div>
-      <div className="mt-6 flex items-center gap-2 text-sm text-muted-foreground animate-fade-up" style={{ animationDelay: "0.3s" }}>
-        <MapPin className="h-4 w-4 text-gold" />
-        Based in Rīga, Latvia · Available for internships, graduate roles & startup work
-      </div>
-      <div className="mt-12 flex flex-wrap gap-4 animate-fade-up" style={{ animationDelay: "0.4s" }}>
-        <Button asChild size="lg" className="bg-gold text-primary-foreground hover:bg-gold/90 rounded-none px-8 h-12 group">
-          <a href="#contact">
-            Get in touch
-            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </a>
-        </Button>
-        <Button asChild size="lg" variant="outline" className="border-border text-muted-foreground hover:text-foreground hover:border-gold/40 rounded-none px-8 h-12">
-          <a href="#projects">
-            View Projects
-            <ArrowUpRight className="h-4 w-4" />
-          </a>
-        </Button>
-        <Button asChild size="lg" variant="outline" className="border-gold/40 text-foreground hover:bg-gold/10 hover:text-gold rounded-none px-8 h-12">
-          <a href="/nikhil-sharma-cv.pdf" download>
-            <Download className="h-4 w-4" /> Download CV
-          </a>
-        </Button>
-      </div>
-    </div>
-    <a
-      href="#about"
-      className="absolute bottom-8 left-1/2 -translate-x-1/2 text-xs font-mono uppercase tracking-[0.3em] text-muted-foreground hover:text-gold transition-colors flex flex-col items-center gap-3"
-    >
-      Scroll
-      <span className="h-12 w-px bg-gradient-to-b from-gold to-transparent" />
-    </a>
-  </section>
-);
-
-const About = () => (
-  <section id="about" className="py-28 lg:py-36">
-    <div className="max-w-6xl mx-auto px-6 lg:px-10">
-      <div className="reveal">
-        <SectionLabel num="01">About</SectionLabel>
-      </div>
-      <div className="grid lg:grid-cols-5 gap-12 lg:gap-20 items-start">
-        <div className="lg:col-span-3 reveal">
-          <h3 className="font-display text-3xl sm:text-4xl lg:text-5xl leading-tight mb-8">
-            An Indian student in Latvia, learning hospitality from the kitchen out
-            <span className="text-gold">.</span>
-          </h3>
-          <div className="space-y-5 text-muted-foreground text-base lg:text-lg leading-relaxed">
-            <p>
-              I'm studying <span className="text-foreground">International Tourism and Hospitality Management</span> at{" "}
-              <span className="text-gold">Turiba University</span> in Rīga, and spending my time outside class in
-              real kitchens, bars and resort floors.
-            </p>
-            <p>
-              My path so far has moved between Michelin Green Star fine dining, an international resort in Greece,
-              and a Belgian gastro pub in Rīga — each one a different angle on what hospitality actually means.
-            </p>
-            <p>
-              In parallel, I build with AI. I'm interested in where thoughtful service meets useful technology:
-              tools for travellers, dashboards for operators, and small agents that take real work off people's plates.
-            </p>
+function HeroArtwork() {
+  return (
+    <div className="hero-art" aria-label="A visual map of hospitality, software, and automation" role="img">
+      <div className="art-orbit art-orbit-one" />
+      <div className="art-orbit art-orbit-two" />
+      <div className="art-glass-panel art-panel-main">
+        <div className="art-panel-top">
+          <span className="art-overline">FIELD NOTES / 01</span>
+          <span className="art-live-dot"><i /> SYSTEMS THINKING</span>
+        </div>
+        <div className="art-title">From the floor<br />to the interface.</div>
+        <div className="art-flow">
+          <div className="art-node">
+            <span className="art-node-icon"><Utensils size={16} /></span>
+            <span>Real-world<br /><b>operations</b></span>
+          </div>
+          <span className="art-connector"><i /><i /><i /></span>
+          <div className="art-node art-node-accent">
+            <span className="art-node-icon"><Network size={16} /></span>
+            <span>Useful<br /><b>technology</b></span>
           </div>
         </div>
-        <div className="lg:col-span-2 reveal" style={{ transitionDelay: "0.15s" }}>
-          <div className="border border-border bg-card/40 p-8 lg:p-10 space-y-6">
-            <Monogram size="lg" />
-            <div className="space-y-4 text-sm">
-              {[
-                ["Location", "Rīga, Latvia"],
-                ["Study", "Turiba University"],
-                ["Focus", "Hospitality · Tourism · AI"],
-                ["Open to", "Internships · Grad roles · Startups"],
-                ["Languages", "English · Hindi · Latvian (basics)"],
-              ].map(([k, v]) => (
-                <div key={k} className="flex justify-between gap-4 pb-3 border-b border-border/60 last:border-0 last:pb-0">
-                  <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">{k}</span>
-                  <span className="text-right text-foreground">{v}</span>
-                </div>
-              ))}
-            </div>
-          </div>
+        <div className="art-divider" />
+        <div className="art-bottom-row">
+          <span><span className="art-mini-dot blue" /> Software</span>
+          <span><span className="art-mini-dot violet" /> AI & automation</span>
+          <span className="art-index">RIGA · LV</span>
         </div>
       </div>
-    </div>
-  </section>
-);
-
-const Experience = () => (
-  <section id="experience" className="py-28 lg:py-36 bg-card/30 border-y border-border/60">
-    <div className="max-w-6xl mx-auto px-6 lg:px-10">
-      <div className="reveal">
-        <SectionLabel num="02">Experience</SectionLabel>
+      <div className="art-glass-chip chip-north">
+        <span className="chip-icon"><Compass size={14} /></span>
+        <span><b>North</b><small>Personal finance</small></span>
+        <span className="chip-arrow"><ArrowUpRight size={13} /></span>
       </div>
-      <div className="space-y-6">
-        {EXPERIENCE.map((e, i) => {
-          const Icon = e.icon;
-          return (
-            <article
-              key={e.role}
-              className="reveal group relative border border-border bg-background/40 p-6 lg:p-10 hover:border-gold/50 transition-all duration-500 hover:-translate-y-1"
-              style={{ transitionDelay: `${i * 0.08}s` }}
-            >
-              <div className="grid lg:grid-cols-[auto_1fr_auto] gap-6 lg:gap-10 items-start">
-                <div className="h-14 w-14 border border-gold/40 flex items-center justify-center text-gold shrink-0">
-                  <Icon className="h-6 w-6" strokeWidth={1.4} />
+      <div className="art-glass-chip chip-hermes">
+        <span className="chip-icon chip-icon-violet"><Sparkles size={14} /></span>
+        <span><b>Hermes</b><small>Agent · automation</small></span>
+        <span className="chip-arrow"><ArrowUpRight size={13} /></span>
+      </div>
+      <div className="art-caption"><span>01 — 04</span><span>A practical builder’s toolkit</span></div>
+    </div>
+  );
+}
+
+function Hero() {
+  return (
+    <section className="hero-section" id="top" aria-labelledby="hero-title">
+      <div className="hero-light hero-light-one" aria-hidden="true" />
+      <div className="hero-light hero-light-two" aria-hidden="true" />
+      <div className="page-container hero-layout">
+        <div className="hero-copy">
+          <p className="eyebrow hero-eyebrow"><span className="eyebrow-dot" /> Nikhil Sharma <span className="eyebrow-divider">/</span> Rīga, Latvia</p>
+          <h1 id="hero-title">
+            Building at the<br />
+            intersection of<br />
+            <em>hospitality</em> &amp; intelligent technology.
+          </h1>
+          <p className="hero-lede">
+            I work across hospitality operations, software development, AI agents, and automation—turning practical experience into useful technology.
+          </p>
+          <div className="hero-actions">
+            <a className="button button-primary" href="#projects">
+              Explore projects <ArrowUpRight size={16} aria-hidden="true" />
+            </a>
+            <a className="button button-quiet" href="#contact">
+              Contact me <ArrowRight size={16} aria-hidden="true" />
+            </a>
+          </div>
+          <div className="hero-socials" aria-label="Social links">
+            <a href="https://github.com/nikhilsharmaawork" target="_blank" rel="noopener noreferrer">
+              <Github size={15} aria-hidden="true" /> GitHub <ArrowUpRight size={12} aria-hidden="true" />
+            </a>
+            <span className="social-divider" aria-hidden="true" />
+            <a href="https://www.linkedin.com/in/nikhilsharmaawork" target="_blank" rel="noopener noreferrer">
+              <Linkedin size={15} aria-hidden="true" /> LinkedIn <ArrowUpRight size={12} aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+        <HeroArtwork />
+      </div>
+      <div className="hero-foot page-container">
+        <span><MapPin size={14} aria-hidden="true" /> Riga, Latvia</span>
+        <a href="#about">Scroll to explore <ArrowRight size={13} aria-hidden="true" /></a>
+      </div>
+    </section>
+  );
+}
+
+function About() {
+  return (
+    <section className="section section-about" id="about">
+      <div className="page-container">
+        <SectionHeading
+          number="01"
+          eyebrow="About"
+          title="Grounded in service. Curious about systems."
+          text="A perspective shaped by both the pace of hospitality and the possibility of software."
+        />
+        <div className="about-grid">
+          <div className="about-story" data-reveal>
+            <p>
+              I’m from India and now study <strong>International Tourism and Hospitality Management</strong> at Turība University in Latvia. Along the way, I’ve worked in kitchens, a hotel environment, and a Riga bar—learning how service works where the details are real and the pace is immediate.
+            </p>
+            <p>
+              Alongside that work, I build software and explore AI agents and automation. I’m interested in technology that understands the operation it serves: tools that make a process clearer, reduce friction, or give people more room to focus on the guest.
+            </p>
+            <p className="about-emphasis">The thread is practical: understand the work first, then build something useful around it.</p>
+          </div>
+          <aside className="about-card" data-reveal aria-label="At a glance">
+            <div className="about-card-top"><span className="about-card-mark"><Mark small /></span><span className="about-card-label">AT A GLANCE</span></div>
+            <div className="about-fact"><span>Based in</span><b>Rīga, Latvia</b></div>
+            <div className="about-fact"><span>Studying</span><b>Tourism &amp; Hospitality</b></div>
+            <div className="about-fact"><span>Building</span><b>Software · AI · Automation</b></div>
+            <a href="https://www.turiba.lv/en" target="_blank" rel="noopener noreferrer" className="about-school-link">
+              Turība University <ArrowUpRight size={14} aria-hidden="true" />
+            </a>
+          </aside>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Experience() {
+  return (
+    <section className="section section-experience" id="experience">
+      <div className="page-container">
+        <SectionHeading
+          number="02"
+          eyebrow="Experience"
+          title="Learned on the floor."
+          text="Hospitality experience across Latvia, Greece, and the next chapter in Colorado."
+        />
+        <div className="experience-list">
+          {EXPERIENCE.map((item, index) => (
+            <article className={`experience-item experience-${item.status.toLowerCase()}`} key={`${item.organization}-${item.role}`} data-reveal style={{ transitionDelay: `${index * 70}ms` }}>
+              <div className="experience-marker" aria-hidden="true"><span /></div>
+              <div className="experience-copy">
+                <div className="experience-topline">
+                  <span className={`status-pill status-${item.status.toLowerCase()}`}>{item.status}</span>
+                  <span className="experience-period">{item.period}</span>
                 </div>
-                <div>
-                  <h3 className="font-display text-2xl lg:text-3xl">
-                    {e.role} <span className="text-gold">@ {e.org}</span>
-                  </h3>
-                  <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground mt-2">{e.meta}</p>
-                  <ul className="mt-5 space-y-2.5 text-muted-foreground">
-                    {e.bullets.map((b) => (
-                      <li key={b} className="flex gap-3 text-sm lg:text-base leading-relaxed">
-                        <span className="text-gold mt-1.5">—</span>
-                        <span>{b}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <span className="font-mono text-xs uppercase tracking-widest text-gold/80 lg:text-right">{e.period}</span>
+                <h3>{item.role}</h3>
+                <p className="experience-org"><b>{item.organization}</b><span>·</span>{item.location}</p>
+                <p className="experience-detail">{item.detail}</p>
               </div>
+              <div className="experience-index" aria-hidden="true">0{index + 1}</div>
             </article>
-          );
-        })}
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+}
 
-const Projects = () => (
-  <section id="projects" className="py-28 lg:py-36">
-    <div className="max-w-6xl mx-auto px-6 lg:px-10">
-      <div className="reveal">
-        <SectionLabel num="03">Selected Projects</SectionLabel>
-      </div>
-      <div className="reveal mb-12">
-        <a
-          href="https://github.com/nikhilsharmaawork"
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex items-center gap-3 border border-border bg-card/40 px-6 py-3 rounded-full hover:border-gold/50 hover:text-gold transition-all group"
-        >
-          <Github className="h-5 w-5" />
-          <span className="font-mono text-xs uppercase tracking-widest">View all projects on GitHub</span>
-          <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-        </a>
-      </div>
-      <div className="grid sm:grid-cols-2 gap-5">
-        {PROJECTS.map((p, i) => {
-          const Icon = p.icon;
-          const Wrapper = p.href ? "a" : "article";
-          return (
-            <Wrapper
-              key={p.title}
-              {...(p.href ? { href: p.href, target: "_blank", rel: "noreferrer" } : {})}
-              className={`reveal group relative border border-border bg-card/40 p-8 lg:p-10 transition-all duration-500 hover:-translate-y-1 overflow-hidden ${
-                p.href
-                  ? "hover:border-gold/50 cursor-pointer"
-                  : "border-border"
-              }`}
-              style={{ transitionDelay: `${i * 0.08}s` }}
-            >
-              <div className="absolute -top-12 -right-12 w-48 h-48 rounded-full bg-gold/[0.04] blur-2xl group-hover:bg-gold/10 transition-colors duration-700" />
-              <div className="relative">
-                <div className="flex items-start justify-between mb-6">
-                  <Icon className="h-8 w-8 text-gold" strokeWidth={1.3} />
-                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted-foreground">{p.tag}</span>
+function Projects() {
+  return (
+    <section className="section section-projects" id="projects">
+      <div className="page-container">
+        <SectionHeading
+          number="03"
+          eyebrow="Selected projects"
+          title="Ideas made tangible."
+          text="A mix of shipped products, personal infrastructure, and work still taking shape. Previews are illustrative interface studies, not product screenshots."
+        />
+        <div className="projects-grid">
+          {PROJECTS.map((project, index) => (
+            <article className={`project-card project-card-${project.preview}`} key={project.name} data-reveal style={{ transitionDelay: `${index * 70}ms` }}>
+              <div className="project-preview-wrap">
+                <ProjectPreview kind={project.preview} />
+                <span className="preview-caption">Illustrative interface study</span>
+              </div>
+              <div className="project-content">
+                <div className="project-meta-row">
+                  <span className={`status-pill status-${project.statusTone}`}>{project.status}</span>
+                  <span className="project-category">{project.category}</span>
                 </div>
-                <div className="flex items-start justify-between gap-4">
-                  <h3 className="font-display text-2xl lg:text-3xl mb-3 group-hover:text-gold transition-colors">{p.title}</h3>
-                  {p.href && (
-                    <ArrowUpRight className="h-5 w-5 text-muted-foreground group-hover:text-gold shrink-0 mt-1 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  )}
+                <h3>{project.name}</h3>
+                <p className="project-description">{project.description}</p>
+                <div className="project-tags" aria-label={`${project.name} technologies`}>
+                  {project.stack.map((tag) => <span key={tag}>{tag}</span>)}
                 </div>
-                <p className="text-muted-foreground text-sm lg:text-base leading-relaxed">{p.desc}</p>
-                {"tags" in p && p.tags && (
-                  <div className="mt-6 flex flex-wrap gap-2">
-                    {p.tags.map((t) => (
-                      <span key={t} className="px-3 py-1 border border-border/80 text-xs font-mono text-muted-foreground rounded-full">
-                        {t}
-                      </span>
-                    ))}
+                {(project.liveUrl || project.sourceUrl) ? (
+                  <div className="project-links">
+                    {project.liveUrl && (
+                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" aria-label={`${project.liveLabel} (opens in a new tab)`}>
+                        {project.liveLabel} <ExternalLink size={14} aria-hidden="true" />
+                      </a>
+                    )}
+                    {project.sourceUrl && (
+                      <a href={project.sourceUrl} target="_blank" rel="noopener noreferrer" aria-label={`View ${project.name} source on GitHub (opens in a new tab)`}>
+                        Source <Github size={14} aria-hidden="true" />
+                      </a>
+                    )}
                   </div>
+                ) : (
+                  <p className="project-link-note">No public demo or source link available.</p>
                 )}
               </div>
-            </Wrapper>
-          );
-        })}
-      </div>
-    </div>
-  </section>
-);
-
-const Skills = () => (
-  <section id="skills" className="py-28 lg:py-36 bg-card/30 border-y border-border/60">
-    <div className="max-w-6xl mx-auto px-6 lg:px-10">
-      <div className="reveal">
-        <SectionLabel num="04">Skills</SectionLabel>
-      </div>
-      <div className="grid lg:grid-cols-2 gap-12">
-        {SKILLS.map((s, i) => (
-          <div key={s.group} className="reveal" style={{ transitionDelay: `${i * 0.1}s` }}>
-            <div className="flex items-center gap-3 mb-6">
-              {s.group === "Hospitality" ? <ChefHat className="h-5 w-5 text-gold" /> : <Code2 className="h-5 w-5 text-gold" />}
-              <h3 className="font-display text-2xl">{s.group}</h3>
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {s.items.map((it) => (
-                <span
-                  key={it}
-                  className="px-4 py-2 text-sm border border-border bg-background/60 hover:border-gold/50 hover:text-gold transition-colors"
-                >
-                  {it}
-                </span>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-);
-
-const Education = () => (
-  <section id="education" className="py-28 lg:py-36">
-    <div className="max-w-6xl mx-auto px-6 lg:px-10">
-      <div className="reveal">
-        <SectionLabel num="05">Education</SectionLabel>
-      </div>
-      <div className="reveal border border-border bg-card/40 p-8 lg:p-12">
-        <div className="grid lg:grid-cols-[auto_1fr_auto] gap-8 items-start">
-          <div className="h-16 w-16 border border-gold/40 flex items-center justify-center text-gold shrink-0">
-            <GraduationCap className="h-7 w-7" strokeWidth={1.3} />
-          </div>
-          <div>
-            <h3 className="font-display text-3xl lg:text-4xl">Turiba University</h3>
-            <p className="text-gold mt-2 font-mono text-xs uppercase tracking-widest">Rīga, Latvia</p>
-            <p className="text-lg mt-4 text-foreground">BBA — International Tourism &amp; Hospitality Management</p>
-            <p className="text-muted-foreground mt-3 text-sm lg:text-base leading-relaxed max-w-2xl">
-              Coursework across hotel and restaurant operations, tourism economics, destination management,
-              service design and intercultural communication — paired with hands-on industry placements across Europe.
-            </p>
-          </div>
-          <span className="font-mono text-xs uppercase tracking-widest text-gold/80 lg:text-right">In progress</span>
+            </article>
+          ))}
         </div>
       </div>
-    </div>
-  </section>
-);
-
-const Contact = () => (
-  <section id="contact" className="py-28 lg:py-40 bg-card/30 border-t border-border/60">
-    <div className="max-w-4xl mx-auto px-6 lg:px-10 text-center">
-      <div className="reveal">
-        <span className="font-mono text-xs uppercase tracking-[0.3em] text-gold">06 — Contact</span>
-        <h2 className="font-display text-5xl sm:text-6xl lg:text-7xl mt-6 leading-tight">
-          Let's <span className="italic gradient-gold-text">work together</span>
-        </h2>
-        <p className="mt-8 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-          Whether you're hiring for hospitality, scouting a graduate for tourism, or building something at the
-          intersection of travel and AI — I'd love to hear from you.
-        </p>
-        <div className="mt-12 flex flex-wrap gap-4 justify-center">
-          <Button asChild size="lg" className="bg-gold text-primary-foreground hover:bg-gold/90 rounded-none px-8 h-12">
-            <a href="mailto:nikhilsharmawork1@gmail.com">
-              <Mail className="h-4 w-4" /> nikhilsharmawork1@gmail.com
-            </a>
-          </Button>
-        </div>
-        <div className="mt-10 flex items-center justify-center gap-6">
-          <a
-            href="https://www.linkedin.com/in/nikhil-sharma1424"
-            target="_blank"
-            rel="noreferrer"
-            className="group flex items-center gap-2 text-muted-foreground hover:text-gold transition-colors"
-          >
-            <Linkedin className="h-5 w-5" />
-            <span className="text-sm">LinkedIn</span>
-            <ArrowUpRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-          </a>
-          <span className="h-4 w-px bg-border" />
-          <a
-            href="https://github.com/nikhilsharmaawork"
-            target="_blank"
-            rel="noreferrer"
-            className="group flex items-center gap-2 text-muted-foreground hover:text-gold transition-colors"
-          >
-            <Github className="h-5 w-5" />
-            <span className="text-sm">GitHub</span>
-            <ArrowUpRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-);
-
-const Footer = () => (
-  <footer className="border-t border-border py-10">
-    <div className="max-w-6xl mx-auto px-6 lg:px-10 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div className="flex items-center gap-3">
-        <Monogram />
-        <div className="font-mono text-xs text-muted-foreground">
-          Nikhil Sharma · Rīga, Latvia · © {new Date().getFullYear()}
-        </div>
-      </div>
-      <div className="flex items-center gap-4">
-        <a href="mailto:nikhilsharmawork1@gmail.com" className="text-muted-foreground hover:text-gold transition-colors" aria-label="Email">
-          <Mail className="h-4 w-4" />
-        </a>
-        <a href="https://github.com/nikhilsharmaawork" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-gold transition-colors" aria-label="GitHub">
-          <Github className="h-4 w-4" />
-        </a>
-        <a href="https://www.linkedin.com/in/nikhil-sharma1424" target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-gold transition-colors" aria-label="LinkedIn">
-          <Linkedin className="h-4 w-4" />
-        </a>
-      </div>
-    </div>
-  </footer>
-);
-
-const Index = () => {
-  useReveal();
-  return (
-    <main className="relative">
-      <Nav />
-      <Hero />
-      <About />
-      <Experience />
-      <Projects />
-      <Skills />
-      <Education />
-      <Contact />
-      <Footer />
-    </main>
+    </section>
   );
-};
+}
 
-export default Index;
+function Toolkit() {
+  return (
+    <section className="section section-toolkit" id="stack">
+      <div className="page-container">
+        <SectionHeading
+          number="04"
+          eyebrow="Toolkit"
+          title="Tools shaped by the work."
+          text="A growing set of skills across software, infrastructure, AI, and hospitality."
+        />
+        <div className="toolkit-grid">
+          {TOOLKIT.map((group, index) => {
+            const Icon = group.icon;
+            return (
+              <article className="toolkit-card" key={group.title} data-reveal style={{ transitionDelay: `${index * 55}ms` }}>
+                <div className="toolkit-icon"><Icon size={18} aria-hidden="true" /></div>
+                <h3>{group.title}</h3>
+                <ul>{group.items.map((item) => <li key={item}>{item}</li>)}</ul>
+              </article>
+            );
+          })}
+        </div>
+        <div className="education-note" data-reveal>
+          <span className="education-icon"><GraduationCap size={19} aria-hidden="true" /></span>
+          <div><span className="education-kicker">Current education</span><b>International Tourism and Hospitality Management</b><span>Turība University · Latvia</span></div>
+          <span className="education-state">In progress</span>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Contact() {
+  return (
+    <section className="section section-contact" id="contact">
+      <div className="page-container">
+        <div className="contact-panel" data-reveal>
+          <div className="contact-glow" aria-hidden="true" />
+          <div className="contact-copy">
+            <div className="section-kicker"><span>05</span><span className="section-rule" aria-hidden="true" /><span>Contact</span></div>
+            <h2>Let’s make<br /><em>useful things.</em></h2>
+            <p>For conversations about hospitality, tourism, software, or practical AI, I’d be glad to hear from you.</p>
+          </div>
+          <div className="contact-actions">
+            <a className="contact-email" href="mailto:nikhilsharmaawork@gmail.com">
+              <span><Mail size={17} aria-hidden="true" /></span>
+              <span><small>Email</small><b>nikhilsharmaawork@gmail.com</b></span>
+              <ArrowUpRight size={17} aria-hidden="true" />
+            </a>
+            <div className="contact-socials">
+              <a href="https://github.com/nikhilsharmaawork" target="_blank" rel="noopener noreferrer"><Github size={16} aria-hidden="true" /> GitHub <ArrowUpRight size={12} aria-hidden="true" /></a>
+              <a href="https://www.linkedin.com/in/nikhilsharmaawork" target="_blank" rel="noopener noreferrer"><Linkedin size={16} aria-hidden="true" /> LinkedIn <ArrowUpRight size={12} aria-hidden="true" /></a>
+            </div>
+            <span className="contact-location"><MapPin size={14} aria-hidden="true" /> Rīga, Latvia</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="site-footer">
+      <div className="page-container footer-inner">
+        <a className="footer-brand" href="#top" aria-label="Nikhil Sharma, back to top"><Mark small /><span>Nikhil Sharma</span></a>
+        <span className="footer-note">Hospitality × technology <span>·</span> Rīga, Latvia</span>
+        <a className="back-top" href="#top">Back to top <ArrowUpRight size={14} aria-hidden="true" /></a>
+        <span className="footer-copyright">© {new Date().getFullYear()}</span>
+      </div>
+    </footer>
+  );
+}
+
+export default function Index() {
+  const [theme, setTheme] = useState<Theme>(readSavedTheme);
+  useReveal();
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    try {
+      window.localStorage.setItem("portfolio-theme", theme);
+    } catch {
+      // Theme still works for the current session when storage is unavailable.
+    }
+  }, [theme]);
+
+  return (
+    <div className="site-shell">
+      <a className="skip-link" href="#main-content">Skip to content</a>
+      <Header theme={theme} onToggleTheme={() => setTheme((current) => current === "dark" ? "light" : "dark")} />
+      <main id="main-content">
+        <Hero />
+        <About />
+        <Experience />
+        <Projects />
+        <Toolkit />
+        <Contact />
+      </main>
+      <Footer />
+    </div>
+  );
+}
